@@ -1,0 +1,19 @@
+{
+  "name": "coffeandbooks",
+  "version": "1.0.0",
+  "description": "Repositorio general de coffe and books",
+  "main": "app.js",
+  "scripts": {
+    "test": "nodemon ./src/app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/barrionuevoJ/CoffeAndBooks_sprint_5.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/barrionuevoJ/CoffeAndBooks_sprint_5/issues"
+  },
+  "homepage": "https://github.com/barrionuevoJ/CoffeAndBooks_sprint_5#readme"
+}
