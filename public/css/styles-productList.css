@@ -1,3 +1,7 @@
+main.listadoProductos section.lista h1 {
+    margin: 30px 0 0 0;
+}
+
 main.listadoProductos section.lista {
     display: flex;
     flex-direction: column;
@@ -5,22 +9,6 @@ main.listadoProductos section.lista {
     margin: 50px 0;
     background-color: #ffffff7d;
     box-shadow: 0 0 10px 5px rgb(0 0 0 / 52%);
-    padding: 2%;
-}
-
-main.listadoProductos section.lista article {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    margin: 7vh 0;
-}
-
-main.listadoProductos section.lista div.productos {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: center;
 }
 
 main.listadoProductos section.lista article button.btn-compra {
@@ -43,7 +31,29 @@ main.listadoProductos section div.productos div.main-article p {
     margin-top: 10px;
 }
 
-@media (min-width: 1024px) {
+/* @media (min-width: 361px) {
+    main.listadoProductos section article img {
+        max-width: 315px;
+        max-height: 475px;
+    }
+
+    main.listadoProductos section h2 {
+        margin: 40px 0 0 0;
+    }
+
+    main.listadoProductos section article {
+        margin: 20px 0 45px 0;
+    }
+
+    main.listadoProductos section div.productos {
+        display: flex;
+        padding: 2vh 3vw 3vh 3vw;
+        flex-direction: column;
+        align-items: center;
+    }
+} */
+
+/* @media (min-width: 1024px) {
     main.listadoProductos section.lista article img {
         width: 15vw;
         height: 45vh;
@@ -56,5 +66,85 @@ main.listadoProductos section div.productos div.main-article p {
         width: 20vw;
         height: 20vh;
         padding: 15px;
+    }
+} */
+
+@media (min-width: 361px) {
+    main.listadoProductos section article img {
+        max-width: 315px;
+        max-height: 475px;
+    }
+
+    main.listadoProductos section h2 {
+        margin: 40px 0 0 0;
+    }
+
+    main.listadoProductos section article {
+        margin: 20px 0 45px 0;
+    }
+
+    main.listadoProductos section article div.main-article h4.title {
+        font-size: 2em;
+    }
+
+    main.listadoProductos section article div.main-article h5.author,
+    main.listadoProductos section article div.main-article p.price {
+        font-size: 1.3em;
+    }
+
+    main.listadoProductos section div.productos {
+        display: flex;
+        padding: 2vh 3vw 3vh 3vw;
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+@media (min-width: 1024px) {
+    main.listadoProductos section a {
+        text-decoration: none;
+        color: white;
+    }
+
+    main.listadoProductos section article {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        height: 67vh;
+        margin: 7vh 0;
+    }
+
+    main.listadoProductos section h2 {
+        margin: 10px 0px;
+    }
+
+    main.listadoProductos section article img {
+        width: 15vw;
+        height: 45vh;
+    }
+
+    main.listadoProductos section article div.main-article {
+        display: flex;
+        flex: 2;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 20vw;
+    }
+
+    main.listadoProductos section article div.main-article h4.title {
+        font-size: inherit;
+    }
+
+    main.listadoProductos section article div.main-article h5.author,
+    main.listadoProductos section article div.main-article p.price {
+        font-size: inherit;
+    }
+
+    main.listadoProductos section div.productos {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: flex-start;
     }
 }

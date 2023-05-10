@@ -1,12 +1,20 @@
+section.carrito{
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+
+}
 section.carrito article {
     display: flex;
+    flex-direction: row;
+    justify-content: space-around;
     padding: 20px;
-    width: 100%;
     margin: 20px 0;
     border-radius: 10px;
     background-color: #fcfbfb;
-    justify-content: space-between;
     box-shadow: 0 0 10px 5px rgb(0 0 0 / 25%);
+    align-items: center;
+    width: 80%;
 }
 
 *{
@@ -21,7 +29,8 @@ main{
     padding:10px;
     align-items: center;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-around;
+    margin: auto;
 }
 section.carrito {
     display: flex;
@@ -30,29 +39,30 @@ section.carrito {
     margin: 25px 0;
 }
 
-section.carrito article div.izquierda {
+/*section.carrito article div.izquierda {
     display: flex;
     padding: 20px;
-    justify-content: space-between;
-}
-
+    justify-content: center;
+    align-items: center;
+}*/
 section.carrito article .izquierda .info{
     display: flex;
     flex-direction:column;
+    justify-content: center;
 }
 
 section.carrito article  img {
     width: 15%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
 }
 article div.info{
     margin:auto;
     padding-left: 4%;
 }
 
-article div.derecha{
-    margin: auto;
-   margin-left: 5%;
-}
+
 article div.izquierda{
     margin: auto;
     margin-left: 5%;
@@ -60,37 +70,45 @@ article div.izquierda{
 p #titulo{
     font-size: medium;
 }
+article div.derecha{
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   
+}
 .derecha button{
-    background-color: #f8d8ea;
-    border-radius: 5px;
+    background-color: #ff6161;
+    border-radius: 10px;
     border-style: none;
     padding: 2%;
-    margin-top: 2%;
-    margin-left: 15%;
     cursor: pointer;
+    width: 130px;
+    height: 30px;
 }
-.derecha input{
+input{
+    display: flex;
+    flex-direction: column;
+    color: black;
+    width: 35%;
+    align-items: center;
+    margin: auto;
     border-radius: 5px;
     border-color: #709ce1;
     border-style: groove;
-    padding: 2%;
+    padding: 5%;
 }
+
 .info h1{
     font-style: italic;
 }
-.derecha p{
-    padding-left: 3%;
-    padding-bottom: 2%;
-    font-size: 17px;
-}
-
 .total {
-    margin-top: 50px;
+    margin-top: auto;
+    align-items: center;
 }
 .total button{
     background-color: #709ce1;
     border-style: none;
     padding: 5px;
     border-radius: 10px;
-    width: 70%;
+    width: 130px;
 }

@@ -6,10 +6,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="css/styles.css">
-    <link rel="stylesheet" href="css/styles-productList.css">
-    <link rel="stylesheet" href="css/styles-header.css">
-    <link rel="stylesheet" href="css/styles-footer.css">
+    <link rel="icon" href="/Images/Logo.ico">
+
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/styles-productList.css">
+    <link rel="stylesheet" href="/css/styles-header.css">
+    <link rel="stylesheet" href="/css/styles-footer.css">
 
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
@@ -28,9 +30,7 @@
                 <div class="productos">
                     <% lista.forEach(libro=> { %>
                         <article>
-                            <div class="img">
-                                <img src="/Images/<%= libro.img %>">
-                            </div>
+                            <img src="/Images/products/<%= libro.img %>">
                             <div class="main-article">
                                 <h4 class="title">
                                     <%= libro.titulo %>
@@ -38,11 +38,10 @@
                                 <h5 class="author">
                                     <%= libro.autor %>
                                 </h5>
-                                <p class="price">
-                                    $ <%= libro.precio %>
-                                </p>
+                                <p class="price"> $ <%= toThousand( libro.precio ) %></p> <br>
                             </div>
-                            <a href="/productDetail/<%= libro.id %>"><button class="btn-compra"> Ver producto</button></a>
+                            <a href="/products/detail/<%= libro.id %>"><button class="btn-compra"> Ver
+                                    producto</button></a>
                         </article>
                         <% }); %>
                 </div>

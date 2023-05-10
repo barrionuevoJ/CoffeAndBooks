@@ -7,9 +7,13 @@ const controlador = {
         res.render('register', {});
     },
 
-    formCyE: (req,res) => {
-        res.render('formCyE', {})
-    }
+    formCreate: (req,res) => {
+        res.render('formCreate', {})
+    },
+    
+    formEdit: (req,res) => {
+        res.render('formEdit', {})
+    },
 }
 
 module.exports = controlador;

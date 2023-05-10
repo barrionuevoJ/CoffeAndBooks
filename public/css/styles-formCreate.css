@@ -1,13 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
-main.registerForm section.form {
+main.create section.add {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 80vh;
 }
 
-main.registerForm section.form form {
+main.create section.add form {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -15,24 +14,25 @@ main.registerForm section.form form {
   border-radius: 20px;
   gap: 20px;
   padding: 30px;
-  height: 85%;
   background-color: #709ce1e8;
   margin: 50px 0;
   box-shadow: 0 0 10px 5px rgb(0 0 0 / 25%);
 }
 
-main.registerForm section.form form>div {
+main.create section.add form>div {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
+  flex-direction: column;
   width: 100%;
 }
 
-main.registerForm section.form form::placeholder {
+main.create section.add form::placeholder {
   color: #536387;
 }
 
-main.registerForm section.form form input {
+main.create section.add form input,
+main.create section.add form select {
   border: solid 2px #709ce1;
   width: 100%;
   padding: 10px;
@@ -42,9 +42,35 @@ main.registerForm section.form form input {
   outline: none;
   resize: none;
   border-radius: 18px;
+  text-align: center;
 }
 
-main.registerForm section.form form label {
+main.create section.add form div.input-number input {
+  width: 80px;
+  text-align: start;
+  margin-left: 10px;
+}
+
+main.create section.add form div.input-number,
+main.create section.add form div.input {
+  height: 130px;
+  margin: 15px 15px;
+}
+
+main.create section.add form div.input-file {
+  flex-direction: column;
+}
+
+main.create section.add form div.input-file input {
+  width: auto;
+  border: none;
+}
+
+main.create section.add form div.feedback {
+  color: #dd4b3c;
+}
+
+main.create section.add form label {
   color: #07074D;
   font-weight: 500;
   font-size: 18px;
@@ -53,17 +79,23 @@ main.registerForm section.form form label {
 }
 
 
-main.registerForm section.form form div.input-user,
-main.registerForm section.form form div.input-pass {
+main.create section.add form div.left-side,
+main.create section.add form div.right-side {
   flex: 2;
 }
 
 
-main.registerForm section.form form div.buttons {
-  flex: 1;
+main.create section.add form div.inputs-top,
+main.create section.add form div.inputs-numbers {
+  display: flex;
 }
 
-main.registerForm section.form form div.buttons button {
+main.create section.add form div.buttons {
+  flex: 1;
+  flex-direction: row;
+}
+
+main.create section.add form div.buttons button {
   width: 200px;
   padding: 15px;
   font-size: 12px;
@@ -79,64 +111,64 @@ main.registerForm section.form form div.buttons button {
   border: none;
 }
 
-main.registerForm section.form div.buttons button:hover {
+main.create section.add div.buttons button:hover {
   transform: translateY(-7px);
 }
 
-main.registerForm section.form div.buttons button:active {
+main.create section.add div.buttons button:active {
   transform: translateY(-1px);
 }
 
-main.registerForm section.form form div.buttons button.btn-submit {
+main.create section.add form div.buttons button.btn-submit {
   background-color: #4cd95b;
   margin-right: 30px;
 }
 
-main.registerForm section.form form div.buttons button.btn-submit:hover {
+main.create section.add form div.buttons button.btn-submit:hover {
   background-color: #31c423;
   box-shadow: 0px 15px 20px rgba(0, 0, 0, 0.4);
 }
 
-main.registerForm section.form form div.buttons button.btn-reset {
+main.create section.add form div.buttons button.btn-reset {
   background-color: #d94c4c;
 }
 
-main.registerForm section.form form div.buttons button.btn-reset:hover {
+main.create section.add form div.buttons button.btn-reset:hover {
   background-color: #c42323;
   box-shadow: 0px 15px 20px rgba(0, 0, 0, 0.4);
 }
 
-main.registerForm .check input {
+main.create .check input {
   accent-color: red;
   justify-items: right;
   margin: 0px 0px 10px 65px;
 }
 
-main.registerForm div.input {
+main.create div.input {
   margin: 0 20px;
   flex: 1;
 }
 
 @media (min-width: 369px) {
-  main.registerForm section.form form {
+  main.create section.add form {
     width: 100%;
   }
 }
 
 @media (min-width: 769px) {
-  main.registerForm section.form form {
+  main.create section.add form {
     width: 80%;
   }
 }
 
 @media (min-width: 1024px) {
-  main.registerForm section.form form {
-    width: 60%;
+  main.create section.add form {
+    width: 70%;
   }
 }
 
 @media (min-width: 1280px) {
-  main.registerForm section.form form {
-    width: 50%;
+  main.create section.add form {
+    width: 60%;
   }
 }

@@ -1,28 +1,174 @@
-main section.add div.formBox form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    height: 150%;
-    background-color: rgba(255, 255, 255, 0.394);
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+main.edit section.add {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-main section.add div.formBox form input {
-    display: flex;
-    align-content: center;
-    margin: 0 0 15% 0%;
-    width: 50%;
-    border: none;
-    border-radius: 10%;
-    padding: 10px;
+main.edit section.add form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  border-radius: 20px;
+  gap: 20px;
+  padding: 30px;
+  background-color: #709ce1e8;
+  margin: 50px 0;
+  box-shadow: 0 0 10px 5px rgb(0 0 0 / 25%);
 }
 
-main section.add div.button button{
- display: flex;
+main.edit section.add form>div {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
 }
 
-h1 {
-    font-size: 2.5em;
-    display: flex;
-    justify-content: center;
-    margin: 10% 0 5% 0
+main.edit section.add form::placeholder {
+  color: #536387;
+}
+
+main.edit section.add form input,
+main.edit section.add form select {
+  border: solid 2px #709ce1;
+  width: 100%;
+  padding: 10px;
+  margin: 20px 0;
+  font-weight: 500;
+  font-size: 14px;
+  outline: none;
+  resize: none;
+  border-radius: 18px;
+  text-align: center;
+}
+
+main.edit section.add form div.input-number input {
+  width: 80px;
+  text-align: start;
+  margin-left: 10px;
+}
+
+main.edit section.add form div.input-number,
+main.edit section.add form div.input {
+  height: 130px;
+  margin: 15px 15px;
+}
+
+main.edit section.add form div.input-file {
+  flex-direction: column;
+}
+
+main.edit section.add form div.input-file input {
+  width: auto;
+  border: none;
+}
+
+main.edit section.add form div.feedback {
+  color: #dd4b3c;
+}
+
+main.edit section.add form label {
+  color: #07074D;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 20px;
+  margin-bottom: 20px;
+}
+
+
+main.edit section.add form div.left-side,
+main.edit section.add form div.right-side {
+  flex: 2;
+}
+
+
+main.edit section.add form div.inputs-top,
+main.edit section.add form div.inputs-numbers {
+  display: flex;
+}
+
+main.edit section.add form div.buttons {
+  flex: 1;
+  flex-direction: row;
+}
+
+main.edit section.add form div.buttons button {
+  width: 200px;
+  padding: 15px;
+  font-size: 12px;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: #fff;
+  border-radius: 45px;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease 0s;
+  cursor: pointer;
+  outline: none;
+  border: none;
+}
+
+main.edit section.add div.buttons button:hover {
+  transform: translateY(-7px);
+}
+
+main.edit section.add div.buttons button:active {
+  transform: translateY(-1px);
+}
+
+main.edit section.add form div.buttons button.btn-submit {
+  background-color: #4cd95b;
+  margin-right: 30px;
+}
+
+main.edit section.add form div.buttons button.btn-submit:hover {
+  background-color: #31c423;
+  box-shadow: 0px 15px 20px rgba(0, 0, 0, 0.4);
+}
+
+main.edit section.add form div.buttons button.btn-cancel {
+  background-color: #d94c4c;
+}
+
+main.edit section.add form div.buttons button.btn-cancel:hover {
+  background-color: #c42323;
+  box-shadow: 0px 15px 20px rgba(0, 0, 0, 0.4);
+}
+
+main.edit .check input {
+  accent-color: red;
+  justify-items: right;
+  margin: 0px 0px 10px 65px;
+}
+
+main.edit div.input {
+  margin: 0 20px;
+  flex: 1;
+}
+
+@media (min-width: 369px) {
+  main.edit section.add form {
+    width: 100%;
+  }
+}
+
+@media (min-width: 769px) {
+  main.edit section.add form {
+    width: 80%;
+  }
+}
+
+@media (min-width: 1024px) {
+  main.edit section.add form {
+    width: 70%;
+  }
+}
+
+@media (min-width: 1280px) {
+  main.edit section.add form {
+    width: 60%;
+  }
 }
