@@ -4,10 +4,6 @@ section.product-detail {
   font-style: normal;
 }
 
-section.product-detail article {
-  background-size: 50%;
-}
-
 section.product-detail div.title {
   display: flex;
   justify-content: center;
@@ -25,7 +21,7 @@ section.product-detail div.image {
 
 section.product-detail div.description {
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
   flex-shrink: 5;
   font-size: 150%;
 
@@ -51,14 +47,31 @@ section.product-detail div.genre {
   background-color: rgba(180, 192, 240, 0.386);
   border-radius: 10%;
 }
+/* AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAH */
+ section.product-detail form {
+    display: flex;
+    justify-content: center;
+ }
 
-section.product-detail div.cart {
+section.product-detail form button{
   display: flex;
   margin: 35px 0;
   border-radius: 10px;
-  padding: 2%;
+  padding: 2% 20%;
   background-color: rgb(180, 192, 240);
   justify-content: center;
+  outline: none;
+  border: none;
+  font-size: 1.5em;
+  cursor: pointer;
+}
+
+section.product-detail form button:hover {
+  background-color: rgb(167, 177, 217);
+}
+
+section.product-detail article.product {
+  background-color: #ffffff7d;
 }
 
 @media (min-width: 769px) {
@@ -71,42 +84,19 @@ section.product-detail div.cart {
     width: 100%;
   }
 
-  section.product-detail div.info {
+  section.product-detail article.product{
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-
-
-  section.product-detail div.product{
-    display: flex;
-    flex-direction: column;
     align-items: center;
-  }
-
-  /* section.product-detail div.product h1 {
-    font-size: 2em;
-  } */
-
-  /* section.product-detail div.genre {
-    display: flex;
     justify-content: center;
-    margin-top: -22%;
-    margin-left: 38%;
-    margin-bottom: 2%;
-    margin-right: 38%;
-  } */
+  }
 
   section.product-detail div.descripcion {
     display: flex;
     flex-direction: column;
     width: 30%;
     margin: 20px 0;
-    /* display: flex;
-    justify-content: center;
-    font-size: 250%;
-    margin-left: -13%;
-    margin-top: -0%; */
+    justify-content: space-evenly;
+    letter-spacing: 1px;
   }
 
   section.product-detail div.description {
@@ -118,14 +108,6 @@ section.product-detail div.cart {
     margin-right: 20%;
     background-color: aliceblue;
   }
-
-  /* section.product-detail div.prices {
-    display: flex;
-    justify-content: space-around;
-    font-size: 150%;
-    margin-left: 25%;
-    margin-right: 7%;
-  } */
 
   section.product-detail div.cart {
     font-size: 1em;

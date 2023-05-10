@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/styles-productDetail.css">
+    <link rel="stylesheet" href="/css/styles-header.css">
+    <link rel="stylesheet" href="/css/styles-footer.css">
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+
+    <title>Coffe & Books</title>
+</head>
+
+<body>
+
+    <%- include('partials/mainHeader') %>
+
+        <main>
+            <section class="product-detail">
+                <article class="product">
+                    <div class="image">
+                        <img src="/Images/<%= libro.img %>" alt="productImg">
+                    </div>
+
+                    <div class="descripcion">
+                        <h1 style="text-align: center; font-size: 1.8em;">
+                            <%= libro.titulo %>
+                        </h1>
+                        <div class="genre">
+                            <span>
+                                <%= libro.genre %>
+                            </span>
+                        </div>
+                        <h3>Descripción:</h3>
+                        <span>
+                            <%= libro.descripcion %>
+                        </span>
+                        <div class="prices">
+                            <h3>Precio: $<%= libro.precio %>
+                            </h3>
+                            <h3>Envio: $500</h3>
+                        </div>
+                        <form action="/productCart" method="post">
+                            <button type="submit">Añadir al carrito</button>
+                        </form>
+                    </div>
+                </article>
+            </section>
+        </main>
+
+        <%- include('partials/mainFooter') %>
+
+</body>
+
+</html>

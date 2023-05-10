@@ -2,10 +2,11 @@ section.carrito article {
     display: flex;
     padding: 20px;
     width: 100%;
+    margin: 20px 0;
     border-radius: 10px;
     background-color: #fcfbfb;
     justify-content: space-between;
-    display: inline-block;
+    box-shadow: 0 0 10px 5px rgb(0 0 0 / 25%);
 }
 
 *{
@@ -24,6 +25,7 @@ main{
 }
 section.carrito {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     margin: 25px 0;
 }
@@ -39,8 +41,8 @@ section.carrito article .izquierda .info{
     flex-direction:column;
 }
 
-section.carrito article div.izquierda img {
-    width: 50%;
+section.carrito article  img {
+    width: 15%;
 }
 article div.info{
     margin:auto;
