@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="icon" href="/images/Logo.ico">
+
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/styles-usersList.css">
+    <link rel="stylesheet" href="/css/styles-header.css">
+    <link rel="stylesheet" href="/css/styles-footer.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" rel="stylesheet" />
+
+    <title>Coffe&Books</title>
+</head>
+
+<body>
+
+    <%- include('../partials/mainHeader') %>
+
+        <main class="usersList">
+            <section class="lista">
+                <h1>Listado de usuarios</h1>
+                <div class="usuarios">
+                    <% users.forEach(user=> { %>
+                        <article>
+                            <img src="/images/users/<%= user.profileimg %>" alt="userImg" />
+                            <div class="parrafs" style="text-align: initial;">
+                                <p>
+                                    <b>Nombre: </b>
+                                    <%= user.firstName %>
+                                </p>
+                                <p>
+                                    <b>Apellido: </b>
+                                    <%= user.lastName %>
+                                </p>
+                                <p>
+                                    <b>Email: </b>
+                                    <%= user.email %>
+                                </p>
+                            </div>
+                            <form action="/users/delete/<%= user.id %>" method="POST">
+                                <button class="btn-delete" type="submit"> Borrar perfil</button>
+                            </form>
+                        </article>
+                        <% }); %>
+                </div>
+            </section>
+        </main>
+
+        <%- include('../partials/mainFooter') %>
+
+</body>
+
+</html>

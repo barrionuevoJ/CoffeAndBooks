@@ -21,34 +21,35 @@
 
 <body>
 
-    <%- include('partials/mainHeader') %>
+    <%- include('../partials/mainHeader') %>
 
         <main class="loginForm">
             <section class="form">
-                <form action="/" method="post">
+                <form action="/users/login" method="post" >
                     <div class="input-user">
-                        <label for="firstname" class="input-label"> Nombre de Usuario</label>
-                        <input type="text" name="nombreUsuario" id="nombreUsuario" placeholder="Ingrese Usuario"
-                            class="inputs" minlength="3" required />
-
+                        <label for="email" > Email</label>
+                        <input type="Email" name="email" id="email" placeholder="Ingrese el email"/>
+                        <% if (locals.errors && errors.email) { %>
+                        <div class="text-danger">
+                            <%= errors.email.msg %>
+                        </div>   
+                        <% } %>
                     </div>
 
                     <div class="input-pass">
-                        <label for="contraUsuario" class="input-label"> Contraseña </label>
-                        <input type="password" name="contraUsuario" id="contraUsuario"
-                            placeholder="Ingrese su contraseña" class="inputs" minlength="3" required />
+                        <label for="password" class="input-label"> Contraseña </label>
+                        <input type="password" name="password" id="password"
+                            placeholder="Ingrese su contraseña" />
 
                     </div>
 
                     <div class="check">
-                        <label id="check-pass" for="pass-check">Recordar contraseña</label>
-                        <input type="checkbox" id="pass-check" minlenght="6">
+                        <label for="checkUser">Recordar usuario</label>
+                        <input type="checkbox" id="checkUser" name="checkUser">
                     </div>
-                    <p><a href="/">¿Olvidó su contraseña?</a></p>
-
                     <div class="buttons">
                         <button class="btn-submit" type="submit"> Iniciar Sesion</button>
-                        <button class="btn-register" type="submit"> Registrarse </button>
+                        <a href="/users/register" class="btn-register"> Registrarse </a>
                     </div>
                 </form>
             </section>
@@ -56,7 +57,7 @@
 
         </main>
 
-        <%- include('partials/mainFooter') %>
+        <%- include('../partials/mainFooter') %>
 </body>
 
 </html>
