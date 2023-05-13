@@ -189,6 +189,20 @@ const controlador = {
       })
       .catch((error) => res.send(error));
   },
+
+  //ordenar productos (aun no esta listo)
+  order: function(req, res){
+    db.producto.findAll({
+      where: {
+        precio: {[db.sequelize.Op.gt] : 10}
+      },
+      order: [
+        ["titulo", "ASC"]
+      ]
+    })
+  },
+
+
 };
 
 module.exports = controlador;
