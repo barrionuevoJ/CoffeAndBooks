@@ -7,7 +7,7 @@ const toThousand = (n) => n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 const { Usuario } = require("../database/models");
 
 const { validationResult } = require("express-validator");
-const userModel = jsonDB("users");
+// const userModel = jsonDB("users");
 const productModel = jsonDB("products");
 
 const controlador = {
