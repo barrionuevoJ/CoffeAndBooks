@@ -190,18 +190,22 @@ const controlador = {
       .catch((error) => res.send(error));
   },
 
-  //ordenar productos (aun no esta listo)
-  order: function(req, res){
+  //ordenar productos
+  top: function(req, res){
     db.producto.findAll({
       where: {
-        precio: {[db.sequelize.Op.gt] : 10}
+        autor: {[db.sequelize.Op.gt] : 20 }
       },
       order: [
-        ["titulo", "ASC"]
-      ]
+        ["titulo", "DESC"]
+      
+      ],
+    limit:8
     })
+      .then(function([Producto, Generos, Autores, Categorias]){
+      res.render("top", {Producto:Producto})
+      })
   },
-
 
 };
 
