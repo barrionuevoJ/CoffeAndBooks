@@ -12,7 +12,7 @@ async function userLoggedMiddleware(req, res, next) {
     let userFromCookie = await Usuario.findOne({ where: { email: emailInCookie } })
 
     if (userFromCookie) {
-        req.session.userLogged = userFromCookie;
+        req.session.userLogged = userFromCookie.dataValues;
     }
 
     if (req.session.userLogged) {

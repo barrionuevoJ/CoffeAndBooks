@@ -149,11 +149,11 @@ const controlador = {
         if (userToLogin) {
           let isOkThePassword = bcrypt.compareSync(
             req.body.password,
-            userToLogin.dataValues.password
+            userToLogin.password
           );
           if (isOkThePassword) {
-            delete userToLogin.dataValues.password;
-            req.session.userLogged = userToLogin.dataValues;
+            delete userToLogin.password;
+            req.session.userLogged = userToLogin;
             if (req.body.checkUser) {
               res.cookie("userEmail", req.body.email, {
                 maxAge: 1000 * 60 * 60,
