@@ -1,4 +1,3 @@
-const jsonDB = require("../model/jsonDatabase");
 const fs = require("fs");
 const path = require("path");
 const bcrypt = require("bcryptjs");
@@ -7,8 +6,6 @@ const toThousand = (n) => n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 const { Usuario } = require("../database/models");
 
 const { validationResult } = require("express-validator");
-// const userModel = jsonDB("users");
-const productModel = jsonDB("products");
 
 const controlador = {
   // Sprint 5
@@ -166,25 +163,26 @@ const controlador = {
 
             return res.redirect("/");
           }
-          return res.render("users/login", {
-            errors: {
-              email: {
-                msg: "Las credenciales no son válidas",
-              },
-            },
-          });
+          return res.render("users/login"
+            // , {
+            //   errors: {
+            //     email: {
+            //       msg: "Las credenciales no son válidas",
+            //     },
+            //   },
+            // }
+          );
         }
 
         return res.render("users/login", {
           errors: {
             email: {
-              msg: "no se encuentra este email en nuestra base de datos",
+              msg: "Este email no se encuentra en nuestra base de datos",
             },
           },
         });
       })
       .catch((error) => {
-        console.log(error);
         res.send("Error interno del servidor");
       });
   },
@@ -197,19 +195,22 @@ const controlador = {
 
   // Proceso de eliminacion de un usuario
   userDestroy: function (req, res) {
+    console.log(req.params.id);
     Usuario.findByPk(req.params.id)
       .then((user) => {
-        if (user.profileimg != "default-user.png") {
+        console.log('usuario: ', user);
+        if (user.profileImg != "default-user.png") {
           fs.unlinkSync(
             path.resolve(
               __dirname,
-              "../../public/images/users/" + user.profileimg
+              "../../public/images/users/" + user.profileImg
             )
           );
         }
-        return Usuario.destroy({ where: { id: user.id } });
+        return Usuario.destroy({ where: { id_user: user.id_user } });
       })
-      .then(() => {
+      .then((e) => {
+        console.log('response: ', e);
         if (req.session.userLogged.id == req.params.id) {
           res.locals.isLogged = false;
         } else {
@@ -222,8 +223,7 @@ const controlador = {
         res.redirect("/users/usersList");
       })
       .catch((error) => {
-        console.log(error);
-        res.status(500).send("Hubo un error en el servidor");
+        res.send(error);
       });
   },
 
@@ -234,7 +234,7 @@ const controlador = {
   },
 
   cart: (req, res) => {
-    const carrito = productModel.carrito();
+    // const carrito = productModel.carrito();
     res.render("users/productCart", { carrito, toThousand });
   },
 
@@ -245,6 +245,29 @@ const controlador = {
   // Formulario de registro
   register: (req, res) => {
     res.render("users/register", {});
+  },
+
+  // HACER EL UPDATE 
+
+  update: async (req, res) => {
+    try {
+      let usuario = await Usuario.findByPk(req.params.id)
+      await Usuario.update(
+        {
+          firstName: req.body.firstName || usuario.firstName,
+          lastName: req.body.lastName || usuario.lastName,
+          email: req.body.email || usuario.email,
+          profileImg: req.body.profileImg  || usuario.profileImg,
+          // profileImg: req.file == undefined ? usuario.profileImg : req.file.filename
+          password: bcrypt.hashSync(req.body.password, 10)  || usuario.password
+        },
+        { where: { id_user: usuario.id_user } }
+      )
+      res.send(usuario)
+    }
+    catch (error) {
+      res.send(error)
+    }
   },
 
   // Proceso de creacion de un nuevo usuario
@@ -275,13 +298,12 @@ const controlador = {
             user.profileimg = req.file ? req.file.filename : "default-user.png";
             delete user["passwordConfirm"];
             user.password = bcrypt.hashSync(user.password, 10);
-            db.Usuario.create(user)
+            Usuario.create(user)
               .then(() => {
                 res.redirect("/users/login/");
               })
               .catch((error) => {
-                console.log(error);
-                res.status(500).send("Hubo un error en el servidor");
+                res.send(error);
               });
           }
         })

@@ -69,7 +69,7 @@
                                 <div class="input">
                                     <label for="categoria">Categoria</label>
                                     <select name="categoria" id="categoria"
-                                        value="<%= libro.categoria %>">
+                                        value="<%= libro.categoria.categoria %>">
                                         <option value="">Seleccione una opción</option>
                                         <option value="masVendidos" <%=locals.old && old.categoria==='masVendidos'
                                             ? 'selected' : '' ; %>>Mas vendidos</option>
@@ -90,7 +90,7 @@
                         <div class="input">
                             <label for="genero">Genero/s</label>
                             <input type="text" name="genero" id="genero"
-                                value="<%= libro.genero %>">
+                                value="<%= libro.genero.genero %>">
                             <% if (locals.errors && errors.genero) { %>
                                 <div class="feedback">
                                     <%= errors.genero.msg %>

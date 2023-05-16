@@ -1,27 +1,25 @@
-const jsonDB = require('../model/jsonDatabase');
+const { Usuario } = require("../database/models");
 
-const User = jsonDB('users');
-
-function userLoggedMiddleware(req, res, next){
+async function userLoggedMiddleware(req, res, next) {
     res.locals.isLogged = false;
 
     let emailInCookie = req.cookies.userEmail;
-    let userFromCookie = User.findByField('email', emailInCookie)
+    
+    if (!emailInCookie) {
+        // Si la cookie no está presente, salimos del middleware y llamamos a `next()` para continuar con el siguiente middleware
+        return next();
+    }
+    let userFromCookie = await Usuario.findOne({ where: { email: emailInCookie } })
 
     if (userFromCookie) {
         req.session.userLogged = userFromCookie;
     }
 
-    if (req.session.userLogged){
+    if (req.session.userLogged) {
         res.locals.isLogged = true;
         res.locals.userLogged = req.session.userLogged;
     }
-
-    
-
     next();
-
-
 }
 
 module.exports = userLoggedMiddleware;

@@ -17,7 +17,7 @@
     <div class="right-side">
         <% if (locals.isLogged) { %>
             <a href="/users/profile/" class="profile">
-                <img src="/images/users/<%= locals.userLogged.profileimg %>" alt="img">
+                <img src="/images/users/<%= locals.userLogged.profileImg %>" alt="img">
                 <span><%= locals.userLogged.firstName %>  <%= locals.userLogged.lastName %></span>
             </a>
             <a href="/users/productCart" class="cart"><i class="fa fa-shopping-cart"></i></a>

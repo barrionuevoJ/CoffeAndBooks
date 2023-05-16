@@ -36,11 +36,11 @@
                                     <%= libro.titulo %>
                                 </h4>
                                 <h5 class="author">
-                                    <%= libro.autor %>
+                                    <%= libro.autor.autor %>
                                 </h5>
                                 <p class="price"> $ <%= toThousand( libro.precio ) %></p> <br>
                             </div>
-                            <a href="/products/detail/<%= libro.id %>"><button class="btn-compra"> Ver
+                            <a href="/products/detail/<%= libro.id_producto %>"><button class="btn-compra"> Ver
                                     producto</button></a>
                         </article>
                         <% }); %>

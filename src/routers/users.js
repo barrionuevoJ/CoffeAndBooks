@@ -37,8 +37,12 @@ router.post('/productCart', authMiddleware,userController.addCart);
 
 router.get('/usersList', authMiddleware,userController.userList)
 
+// Editar un usuario
+
+router.put('/update/:id', userController.update)
+
 // Borrar usuario
 
-router.post('/delete/:id', authMiddleware,userController.userDestroy)
+router.delete('/delete/:id', authMiddleware,userController.userDestroy)
 
 module.exports = router;

@@ -44,9 +44,13 @@
 
                                 <div class="input">
                                     <label for="descripcion">Descripcion</label>
-                                    <input type="text" name="descripcion" id="descripcion"
+                                    <textarea name="descripcion" id="descripcion" cols="30" rows="10"
                                         value="<%= locals.old && old.descripcion ? old.descripcion: '' %>">
-                                    <% if (locals.errors && errors.descripcion) { %>
+
+                                    </textarea>
+                                    <!-- <input type="text" name="descripcion" id="descripcion"
+                                        value="<%= locals.old && old.descripcion ? old.descripcion: '' %>">
+                                    <% if (locals.errors && errors.descripcion) { %> -->
                                         <div class="feedback">
                                             <%= errors.descripcion.msg %>
                                         </div>
@@ -58,8 +62,8 @@
                             <div class="right-side">
 
                                 <div class="input">
-                                    <label for="autor">Autor</label>
-                                    <input type="text" name="autor" id="autor"
+                                    <label for="id_autor">Autor</label>
+                                    <input type="number" name="autor" id="id_autor"
                                         value="<%= locals.old && old.autor ? old.autor: '' %>">
                                     <% if (locals.errors && errors.autor) { %>
                                         <div class="feedback">
@@ -69,16 +73,16 @@
                                 </div>
 
                                 <div class="input">
-                                    <label for="categoria">Categoria</label>
-                                    <select name="categoria" id="categoria"
+                                    <label for="id_categoria">Categoria</label>
+                                    <select name="categoria" id="id_categoria"
                                         value="<%= locals.old && old.categoria ? old.categoria: '' %>">
                                         <option value="">Seleccione una opción</option>
-                                        <option value="masVendidos" <%=locals.old && old.categoria==='masVendidos'
-                                            ? 'selected' : '' ; %>>Mas vendidos</option>
-                                        <option value="ofertas" <%=locals.old && old.categoria==='ofertas' ? 'selected'
-                                            : '' ; %>>Ofertas</option>
-                                        <option value="interes" <%=locals.old && old.categoria==='interes' ? 'selected'
-                                            : '' ; %>>Interes</option>
+                                        <option value="1" <%=locals.old && old.categoria===1 ? 'selected' : '' ; %>
+                                            >Ofertas</option>
+                                        <option value="2" <%=locals.old && old.categoria===2 ? 'selected' : '' ; %>>
+                                            Mas vendidos</option>
+                                        <option value="3" <%=locals.old && old.categoria===3 ? 'selected' : '' ; %>
+                                            >Interes</option>
                                     </select>
                                     <% if (locals.errors && errors.categoria) { %>
                                         <div class="feedback">
@@ -90,8 +94,8 @@
                             </div>
                         </div>
                         <div class="input">
-                            <label for="genero">Genero/s</label>
-                            <input type="text" name="genero" id="genero"
+                            <label for="id_genero">Genero/s</label>
+                            <input type="number" name="genero" id="id_genero"
                                 value="<%= locals.old && old.genero ? old.genero: '' %>">
                             <% if (locals.errors && errors.genero) { %>
                                 <div class="feedback">

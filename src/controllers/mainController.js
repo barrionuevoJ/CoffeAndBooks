@@ -1,18 +1,29 @@
-const jsonDB = require('../model/jsonDatabase');
-const productModel = jsonDB('products');
 const toThousand = n => n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 
-// const { Producto } = require("../database/models");
+const { Producto } = require("../database/models");
 
 const mainController = {
-    index: (req, res) => {
-
-        const masVendidos = productModel.masVendidos('masVendidos')
-        const ofertas = productModel.ofertas('ofertas')
-        const interes = productModel.interes('interes')
-        res.render('main/index', { masVendidos, ofertas, interes, toThousand })
+    index: async (req, res) => {
+        try {
+            const ofertas = await Producto.findAll({
+                where: { id_categoria: '1' },
+                include: ["autor"]
+            });
+            const masVendidos = await Producto.findAll({
+                where: { id_categoria: '2' },
+                include: ["autor"]
+            });
+            const interes = await Producto.findAll({
+                where: { id_categoria: '3' },
+                include: ["autor"]
+            });
+            res.render('main/index', { masVendidos, ofertas, interes, toThousand });
+        } catch (error) {
+            console.error(error);
+            res.send(error);
+        }
     },
-}
+};
 
 
 

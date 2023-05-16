@@ -24,13 +24,30 @@ module.exports = (sequelize, DataTypes) => {
     },
     img: {
       type: DataTypes.STRING,
-      allowNull: false,
     },
     descuento: {
       type: DataTypes.INTEGER,
     },
   };
+  let config = { tableName: "productos", timestamps: false };
 
-  let config = { tableName: "productos", timestamps: false};
-  return (Producto = sequelize.define(alias, cols, config));
+  const Producto = sequelize.define(alias, cols, config)
+
+  Producto.associate = models => {
+    Producto.belongsTo(models.Autor, {
+      as: 'autor',
+      foreignKey: 'id_autor'
+    })
+    Producto.belongsTo(models.Categoria, {
+      as: 'categoria',
+      foreignKey: 'id_categoria'
+    })
+    Producto.belongsTo(models.Genero, {
+      as: 'genero',
+      foreignKey: 'id_genero'
+    })
+  }
+
+  return Producto
+
 };

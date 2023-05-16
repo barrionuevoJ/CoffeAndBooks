@@ -25,21 +25,22 @@
 
         <main class="loginForm">
             <section class="form">
-                <form action="/users/login" method="post" >
+                <form action="/users/login" method="post">
                     <div class="input-user">
-                        <label for="email" > Email</label>
-                        <input type="Email" name="email" id="email" placeholder="Ingrese el email"/>
+                        <label for="email"> Email</label>
+                        <input type="Email" name="email" id="email" placeholder="Ingrese el email"
+                            value="<%= locals.old && old.email ? old.email: '' %>" />
+                            <% console.log(locals.old); %>
                         <% if (locals.errors && errors.email) { %>
-                        <div class="text-danger">
-                            <%= errors.email.msg %>
-                        </div>   
-                        <% } %>
+                            <div class="text-danger">
+                                <%= errors.email.msg %>
+                            </div>
+                            <% } %>
                     </div>
 
                     <div class="input-pass">
                         <label for="password" class="input-label"> Contraseña </label>
-                        <input type="password" name="password" id="password"
-                            placeholder="Ingrese su contraseña" />
+                        <input type="password" name="password" id="password" placeholder="Ingrese su contraseña" />
 
                     </div>
 

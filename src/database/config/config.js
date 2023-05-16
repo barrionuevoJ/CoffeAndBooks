@@ -2,7 +2,7 @@ module.exports = {
   "development": {
     "username": "root",
     "password": null,
-    "database": "coffe&books_db",
+    "database": "coffeandbooks_db",
     "host": "127.0.0.1",
     "dialect": "mysql"
   },
