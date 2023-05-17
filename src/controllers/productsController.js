@@ -1,6 +1,9 @@
+const fs = require('fs')
+const path = require('path')
 const toThousand = (n) => n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 
 const { Producto, Genero, Autor, Categoria } = require("../database/models");
+const { error } = require('console');
 
 const controlador = {
 
@@ -32,29 +35,37 @@ const controlador = {
 
     Promise.all([promGeneros, promAutores, promCategorias])
       .then(([generos, autores, categorias]) => {
-        return res.render("products/formCreate");
+        return res.render("products/formCreate", { generos, autores, categorias });
       })
       .catch((error) => res.send(error));
   },
 
   // Crear un producto
-  create: function (req, res) {
-    console.log(req.body);
-    Producto.create({
-      titulo: req.body.titulo,
-      descripcion: req.body.descripcion,
-      cantidad: req.body.cantidad,
-      precio: req.body.precio,
-      img: req.body.img,
-      descuento: req.body.descuento,
-      id_genero: req.body.id_genero,
-      id_autor: req.body.id_autor,
-      id_categoria: req.body.id_categoria,
-    })
-      .then(() => {
-        return res.redirect("/products");
-      })
-      .catch((error) => res.send(error));
+  create: async (req, res) => {
+    try {
+      await Producto.create(
+        {
+          titulo: req.body.titulo,
+          descripcion: req.body.descripcion,
+          cantidad: req.body.cantidad,
+          precio: req.body.precio,
+          img: req.file?.filename || 'default-image.png',
+          descuento: req.body.descuento,
+          id_genero: req.body.id_genero,
+          id_autor: req.body.id_autor,
+          id_categoria: req.body.id_categoria,
+        })
+      return res.redirect("/products");
+    } catch (error) {
+      if (req.file) {
+        let imagen = req.file.filename;
+        let imgpath = `../../public/Images/products/${imagen}`
+        if (imagen) {
+          fs.unlinkSync(path.resolve(__dirname, imgpath));
+        }
+      }
+      return res.send(error)
+    }
   },
 
   // Formulario de edición
@@ -80,34 +91,49 @@ const controlador = {
   },
 
   // Actualizar un producto
-  update: function (req, res) {
-    let idProducto = req.params.id;
-    Producto.update(
-      {
-        titulo: req.body.titulo,
-        descripcion: req.body.descripcion,
-        cantidad: req.body.cantidad,
-        precio: req.body.precio,
-        img: req.body.img,
-        descuento: req.body.descuento,
-      },
-      {
-        where: { id: idProducto },
-      }
-    )
-      .then(() => {
-        return res.redirect("/products");
-      })
-      .catch((error) => res.send(error));
+  update: async function (req, res) {
+    try {
+      let idProducto = req.params.id;
+      await Producto.update(
+        {
+          titulo: req.body.titulo,
+          descripcion: req.body.descripcion,
+          cantidad: req.body.cantidad,
+          precio: req.body.precio,
+          img: req.body.img,
+          descuento: req.body.descuento,
+        },
+        {
+          where: { id: idProducto },
+        }
+      )
+      return res.redirect("/products");
+    } catch (error) {
+      return res.send(error)
+    }
+
   },
 
   // Eliminar un producto
 
   destroy: function (req, res) {
     let idProducto = req.params.id;
-    Producto.destroy({ where: { id: idProducto }, force: true }) // force: true es para asegurar que se ejecute la acción
-      .then(() => {
-        return res.redirect("/products");
+
+    Producto.findOne({ where: { id_producto: idProducto } })
+      .then((producto) => {
+        if (producto) {
+          let img = producto.img;
+          Producto.destroy({ where: { id_producto: idProducto }, force: true })
+            .then(() => {
+              if (img !== 'default-image.png') {
+                fs.unlinkSync(path.resolve(__dirname, "../../public/images/products/" + img));
+              }
+              return res.redirect("/products");
+            })
+            .catch((error) => res.send(error));
+        } else {
+          return res.status(404).send("Producto no encontrado");
+        }
       })
       .catch((error) => res.send(error));
   },

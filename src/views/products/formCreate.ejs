@@ -43,28 +43,39 @@
                                 </div>
 
                                 <div class="input">
-                                    <label for="descripcion">Descripcion</label>
-                                    <textarea name="descripcion" id="descripcion" cols="30" rows="10"
-                                        value="<%= locals.old && old.descripcion ? old.descripcion: '' %>">
-
-                                    </textarea>
-                                    <!-- <input type="text" name="descripcion" id="descripcion"
-                                        value="<%= locals.old && old.descripcion ? old.descripcion: '' %>">
-                                    <% if (locals.errors && errors.descripcion) { %> -->
+                                    <label for="id_genero">Genero/s</label>
+                                    <select type="number" name="id_genero" id="id_genero"
+                                        value="<%= locals.old && old.genero ? old.genero: '' %>">
+                                        <option value=""> Seleccione una opcion </option>
+                                        <% generos.forEach(genero=> { %>
+                                            <option value="<%= genero.id_genero %>" <%=locals.old &&
+                                                old.genero===genero.id_genero ? selected : '' %>>
+                                                <%= genero.genero%>
+                                            </option>
+                                            <%}); %>
+                                    </select>
+                                    <% if (locals.errors && errors.genero) { %>
                                         <div class="feedback">
-                                            <%= errors.descripcion.msg %>
+                                            <%= errors.genero.msg %>
                                         </div>
                                         <% } %>
                                 </div>
-
                             </div>
 
                             <div class="right-side">
 
                                 <div class="input">
                                     <label for="id_autor">Autor</label>
-                                    <input type="number" name="autor" id="id_autor"
+                                    <select type="number" name="id_autor" id="id_autor"
                                         value="<%= locals.old && old.autor ? old.autor: '' %>">
+                                        <option value="">Seleccione una opción</option>
+                                        <% autores.forEach(autor=> { %>
+                                                <option value="<%= autor.id_autor %>" <%=locals.old &&
+                                                    old.autor===autor.id_autor ? selected : '' %>>
+                                                    <%= autor.autor%>
+                                                </option>
+                                                <%}); %>
+                                    </select>
                                     <% if (locals.errors && errors.autor) { %>
                                         <div class="feedback">
                                             <%= errors.autor.msg %>
@@ -74,15 +85,15 @@
 
                                 <div class="input">
                                     <label for="id_categoria">Categoria</label>
-                                    <select name="categoria" id="id_categoria"
+                                    <select name="id_categoria" id="id_categoria"
                                         value="<%= locals.old && old.categoria ? old.categoria: '' %>">
                                         <option value="">Seleccione una opción</option>
-                                        <option value="1" <%=locals.old && old.categoria===1 ? 'selected' : '' ; %>
-                                            >Ofertas</option>
-                                        <option value="2" <%=locals.old && old.categoria===2 ? 'selected' : '' ; %>>
-                                            Mas vendidos</option>
-                                        <option value="3" <%=locals.old && old.categoria===3 ? 'selected' : '' ; %>
-                                            >Interes</option>
+                                        <% categorias.forEach(categoria=> { %>
+                                            <option value="<%= categoria.id_categoria %>" <%=locals.old &&
+                                                old.categoria===categoria.id_categoria ? selected : '' %>>
+                                                <%= categoria.categoria%>
+                                            </option>
+                                            <%}); %>
                                     </select>
                                     <% if (locals.errors && errors.categoria) { %>
                                         <div class="feedback">
@@ -93,13 +104,15 @@
 
                             </div>
                         </div>
+
+
                         <div class="input">
-                            <label for="id_genero">Genero/s</label>
-                            <input type="number" name="genero" id="id_genero"
-                                value="<%= locals.old && old.genero ? old.genero: '' %>">
-                            <% if (locals.errors && errors.genero) { %>
+                            <label for="descripcion">Descripcion</label>
+                            <textarea name="descripcion" id="descripcion" cols="30"
+                                rows="10"><%= locals.old && old.descripcion ? old.descripcion : '' %></textarea>
+                            <% if (locals.errors && errors.descripcion) { %>
                                 <div class="feedback">
-                                    <%= errors.genero.msg %>
+                                    <%= errors.descripcion.msg %>
                                 </div>
                                 <% } %>
                         </div>
@@ -144,9 +157,6 @@
                 </form>
 
             </section>
-
-
-
         </main>
         <%- include('../partials/mainFooter.ejs') %>
 </body>

@@ -29,7 +29,7 @@
                 <div class="usuarios">
                     <% users.forEach(user=> { %>
                         <article>
-                            <img src="/images/users/<%= user.profileimg %>" alt="userImg" />
+                            <img src="/images/users/<%= user.profileImg %>" alt="userImg" />
                             <div class="parrafs" style="text-align: initial;">
                                 <p>
                                     <b>Nombre: </b>
@@ -44,7 +44,7 @@
                                     <%= user.email %>
                                 </p>
                             </div>
-                            <form action="/users/delete/<%= user.id %>" method="POST">
+                            <form action="/users/delete/<%= user.id_user %>?_method=DELETE" method="POST">
                                 <button class="btn-delete" type="submit"> Borrar perfil</button>
                             </form>
                         </article>
