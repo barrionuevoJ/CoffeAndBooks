@@ -127,13 +127,19 @@ const controlador = {
   update: async (req, res) => {
     try {
       let usuario = await Usuario.findByPk(req.params.id)
+
+      let imagen = usuario.profileImg
+      let imgpath = `../../public/Images/users/${imagen}`
+      if (req.file) {
+        fs.unlinkSync(path.resolve(__dirname, imgpath));
+        imagen = req.file.filename;
+      }
       await Usuario.update(
         {
           firstName: req.body.firstName || usuario.firstName,
           lastName: req.body.lastName || usuario.lastName,
           email: req.body.email || usuario.email,
-          profileImg: req.body.profileImg || usuario.profileImg,
-          // profileImg: req.file == undefined ? usuario.profileImg : req.file.filename
+          profileImg: imagen,
           password: bcrypt.hashSync(req.body.password, 10) || usuario.password
         },
         { where: { id_user: usuario.id_user } }

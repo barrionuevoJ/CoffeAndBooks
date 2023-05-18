@@ -71,20 +71,19 @@ const controlador = {
   // Formulario de edición
 
   edit: function (req, res) {
-    let idProducto = req.params.id;
-    let promProducto = Producto.findByPk(idProducto, {
+    let promProducto = Producto.findByPk(req.params.id, {
       include: ["genero", "autor", "categoria"],
     });
     let promGeneros = Genero.findAll();
     let promAutores = Autor.findAll();
     let promCategorias = Categoria.findAll();
     Promise.all([promProducto, promGeneros, promAutores, promCategorias])
-      .then(([Producto, Generos, Autores, Categorias]) => {
+      .then(([Producto, generos, autores, categorias]) => {
         return res.render("products/formEdit", {
-          Producto,
-          Generos,
-          Autores,
-          Categorias,
+          libro: Producto,
+          generos,
+          autores,
+          categorias,
         });
       })
       .catch((error) => res.send(error));
@@ -93,21 +92,32 @@ const controlador = {
   // Actualizar un producto
   update: async function (req, res) {
     try {
-      let idProducto = req.params.id;
+      let producto = await Producto.findByPk(req.params.id)
+      
+      // Para borrar el archivo viejo, y subir el nuevo
+      let imagen = producto.img
+      let imgpath = `../../public/Images/products/${imagen}`
+      if (req.file) {
+        fs.unlinkSync(path.resolve(__dirname, imgpath));
+        imagen = req.file.filename;
+      }
       await Producto.update(
         {
-          titulo: req.body.titulo,
+          titulo: req.body.titulo || producto.titulo,
           descripcion: req.body.descripcion,
           cantidad: req.body.cantidad,
           precio: req.body.precio,
-          img: req.body.img,
+          img: imagen,
           descuento: req.body.descuento,
+          id_genero: req.body.id_genero,
+          id_autor: req.body.id_autor,
+          id_categoria: req.body.id_categoria,
         },
         {
-          where: { id: idProducto },
+          where: { id_producto: req.params.id },
         }
       )
-      return res.redirect("/products");
+      return res.redirect("/");
     } catch (error) {
       return res.send(error)
     }
