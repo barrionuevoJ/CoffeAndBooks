@@ -27,12 +27,6 @@ router.get('/register', guestMiddleware, userController.register);
 // Procesar el registro 
 router.post('/register', uploadFile.single('profileImg'), userRegisterValidation, userController.newUser);
 
-// Carrito
-router.get('/productCart', authMiddleware,userController.cart)
-
-// Añadir al carro
-router.post('/productCart', authMiddleware,userController.addCart);
-
 // Lista de usuarios
 
 router.get('/usersList', authMiddleware,userController.userList)

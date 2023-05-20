@@ -6,6 +6,14 @@ const { Producto, Genero, Autor, Categoria } = require("../database/models");
 const { error } = require('console');
 
 const controlador = {
+  cart: (req, res) => {
+    res.render('/products/cart')
+  },
+
+  addCart: (req, res) => {
+    let producto = Producto.findByPk(req.params.id_producto)
+    res.send(producto)
+  },
 
   db: (req, res) => {
     Producto.findAll().then((productos) => {
@@ -93,7 +101,7 @@ const controlador = {
   update: async function (req, res) {
     try {
       let producto = await Producto.findByPk(req.params.id)
-      
+
       // Para borrar el archivo viejo, y subir el nuevo
       let imagen = producto.img
       let imgpath = `../../public/Images/products/${imagen}`
