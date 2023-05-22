@@ -12,6 +12,9 @@ const uploadFile = multerMiddleware('users', 'user');
 // Formulario de login
 router.get('/login', guestMiddleware, userController.login);
 
+
+router.get('/editprofile', authMiddleware, userController.update);
+
 // Procesar el login
 router.post('/login', userController.loginProcess);
 
@@ -19,7 +22,7 @@ router.post('/login', userController.loginProcess);
 router.get('/logout', authMiddleware,userController.logout);
 
 //Perfil de usuario
-router.get('/profile/', authMiddleware,userController.profile);
+router.get('/profile', authMiddleware,userController.profile);
 
 // Formulario de registro de usuario
 router.get('/register', guestMiddleware, userController.register);

@@ -1,0 +1,81 @@
+.profile .user {
+    background-color: #ffffff7d; 
+    box-shadow: 0 0 10px 5px rgb(0 0 0 / 52%);
+    margin: 7vw 0;
+    width: 90vw;
+    height: 60vh;
+    border-radius: 10px;
+}
+
+.profile .user article {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.profile .user h1 {
+    display: flex;
+    justify-content: center;
+    margin: 0 0 10px 0;
+}
+
+.profile .user img {
+    display: flex;
+    align-items: start;
+    width: 160px;
+    height: 160px;
+    border-right: 1.5px solid rgba(0, 0, 0, 0.695);
+    margin: 0 7vw;
+}
+
+.profile .user article .parrafs {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-size: 20px;
+    margin: 0 10vw;
+}
+
+.profile .user .parrafs p{
+    display: flex;
+    margin: 20px;
+}
+
+.profile .user .buttons .logOut{
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    text-align: center;
+
+    font-size: 20px;
+    margin: 10px 39vw;
+    height: 35px;
+
+    background-color: #648bc9;
+    border-radius: 7px;
+}
+
+
+.profile .user .buttons .editProf{
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    text-align: center;
+
+    font-size: 20px;
+    margin: 10px 39vw;
+    height: 35px;
+
+    background-color: #648bc9;
+    border-radius: 7px;
+}
+
+.profile .user .buttons a {
+    display: flex;
+    align-items: center;
+
+    color: white;
+    text-decoration: none;
+}
+
+
