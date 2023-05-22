@@ -27,7 +27,7 @@
             <section class="product-detail">
                 <article class="product">
                     <div class="image">
-                        <img src="/Images/products/<%= libro.img %>" alt="productImg">
+                        <img src="/Images/products/<%= libro.img %>" alt="productImg" width="100%">
                     </div>
 
                     <div class="descripcion">
@@ -47,27 +47,29 @@
                             <%= libro.descripcion %>
                         </span>
                         <div class="prices">
-                            <h3> $ <%= toThousand( libro.precio ) %></h3>
+                            <h3> $ <%= toThousand( libro.precio ) %>
+                            </h3>
                             <h3>Envio: $500</h3>
                         </div>
                         <div class="buttons">
-                            <form action="/users/productCart" method="post">
+                            <form action="/products/addCart/<%= libro.id_producto %>" method="post">
                                 <button type="submit" class="button-add">Añadir al carrito</button>
                             </form>
                         </div>
 
                         <% if (locals.isLogged) { %>
-                        <div class="admin">
-                            <a href="/products/edit/<%= libro.id %>" class="button-edit">
-                                <i class="fa-solid fa-pen"></i>
-                            </a>
-                            
-                            <form action="/products/delete/<%= libro.id %>?_method=DELETE" method="POST"
-                                style="display: inline-flex">
-                                <button type="submit" class="button-delete"><i class="fa-solid fa-trash"></i></button>
-                            </form>
-                        </div>
-                        <% } %>
+                            <div class="admin">
+                                <a href="/products/edit/<%= libro.id_producto %>" class="button-edit">
+                                    <i class="fa-solid fa-pen"></i>
+                                </a>
+
+                                <form action="/products/delete/<%= libro.id_producto %>?_method=DELETE" method="POST"
+                                    style="display: inline-flex">
+                                    <button type="submit" class="button-delete"><i
+                                            class="fa-solid fa-trash"></i></button>
+                                </form>
+                            </div>
+                            <% } %>
                     </div>
                 </article>
             </section>

@@ -30,7 +30,6 @@
                         <label for="email"> Email</label>
                         <input type="Email" name="email" id="email" placeholder="Ingrese el email"
                             value="<%= locals.old && old.email ? old.email: '' %>" />
-                            <% console.log(locals.old); %>
                         <% if (locals.errors && errors.email) { %>
                             <div class="text-danger">
                                 <%= errors.email.msg %>

@@ -6,6 +6,7 @@ const router = express.Router();
 
 const productValidation = require('../middleware/productCreateValidation')
 const productsController = require('../controllers/productsController')
+const authMiddleware = require('../middleware/authMiddleware')
 const multerMiddleware = require('../middleware/multer');
 const uploadFile = multerMiddleware('products', 'product');
 
@@ -13,8 +14,14 @@ const uploadFile = multerMiddleware('products', 'product');
 router.get('/', productsController.all);
 router.get('/db', productsController.db);
 
+// Carrito
+router.get('/cart', authMiddleware, productsController.cart)
+
+// Añadir al carro
+router.post('/addCart/:id', authMiddleware, productsController.addCart);
+
 // Crear un producto 
-router.post('/', uploadFile.single('img'), productValidation,productsController.create)
+router.post('/', uploadFile.single('img'), productValidation, productsController.create)
 
 router.get('/create', productsController.add);
 

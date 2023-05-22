@@ -9,18 +9,18 @@ module.exports = (sequelize, DataTypes) => {
     },
     titulo: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true ,
     },
     descripcion: {
       type: DataTypes.TEXT,
     },
     cantidad: {
       type: DataTypes.INTEGER,
-      allowNull: false,
+      allowNull: true,
     },
     precio: {
       type: DataTypes.INTEGER,
-      allowNull: false,
+      allowNull: true,
     },
     img: {
       type: DataTypes.STRING,

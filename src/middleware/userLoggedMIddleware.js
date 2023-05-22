@@ -4,15 +4,13 @@ async function userLoggedMiddleware(req, res, next) {
     res.locals.isLogged = false;
 
     let emailInCookie = req.cookies.userEmail;
-    
-    if (!emailInCookie) {
-        // Si la cookie no está presente, salimos del middleware y llamamos a `next()` para continuar con el siguiente middleware
-        return next();
-    }
-    let userFromCookie = await Usuario.findOne({ where: { email: emailInCookie } })
 
-    if (userFromCookie) {
-        req.session.userLogged = userFromCookie.dataValues;
+
+    if (emailInCookie) {
+        let userFromCookie = await Usuario.findOne({ where: { email: emailInCookie } })
+        if (userFromCookie) {
+            req.session.userLogged = userFromCookie;
+        }
     }
 
     if (req.session.userLogged) {
