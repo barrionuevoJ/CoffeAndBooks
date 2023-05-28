@@ -11,15 +11,15 @@ const userRegisterValidation = [
     body('password')
         .notEmpty().withMessage('La contraseña es obligatoria').bail()
         .isLength({ min: 8 }).withMessage('La contraseña debe tener un minimo de 8 caracteres'),
-    body('passwordConfirm').notEmpty().withMessage('Este campo es obligatorio').bail()
+    body('passwordConfirm').notEmpty().withMessage('Por favor, confirme la contraseña').bail()
         .custom((value, { req }) => {
             if (value != req.body.password) {
                 throw new Error('Las contraseñas no coinciden')
             }
             return true;
         }),
-    body('email').notEmpty().withMessage('El correo electronico es un campo obligatorio').bail()
-        .isEmail().withMessage('Ingrese un correo electronico valido'),
+    body('email').notEmpty().withMessage('El correo es un campo obligatorio').bail()
+        .isEmail().withMessage('Ingrese un correo valido'),
     body('profileImg').custom((value, { req }) => {
         let file = req.file;
         let acceptedExtensions = ['.jpg', '.png', '.jpeg'];

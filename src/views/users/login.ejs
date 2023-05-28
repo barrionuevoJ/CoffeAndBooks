@@ -25,16 +25,13 @@
 
         <main class="loginForm">
             <section class="form">
-                <% if (locals.errors && (errors.email || errors.password)) { %>
+                <% if (locals.errors) { %>
                     <article class="errors">
                         <div class="text-danger">
                             <ul>
-                        <% if (errors.email) { %>
-                            <li><%= errors.email.msg %></li>
-                        <% } %>
-                        <% if (errors.password) { %>
-                            <li><%= errors.password.msg %></li>
-                        <% } %>
+                                <% for( let prop in errors) { %>
+                                    <li> <%= locals.errors[prop].msg %></li>
+                                <% } %>
                             </ul>    
                         </div>
                     </article>

@@ -1,5 +1,28 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
+main.registerForm section.form article.errors {
+  position: absolute;
+  background-color: #709ce1ad;
+  right: 3vw;
+  border-radius: 15px;
+  padding: 20px 45px;
+  max-width: 305px;
+}
+
+main.registerForm section.form article.errors .text-danger {
+  color: red;
+}
+
+main.registerForm section.form article.errors .text-danger li {
+  margin: 20px 0;
+}
+
+main.registerForm section.form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 main.registerForm section.form {
   display: flex;
   align-items: center;
