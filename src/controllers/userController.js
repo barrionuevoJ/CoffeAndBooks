@@ -19,16 +19,17 @@ const controlador = {
     res.render("users/register", {});
   },
 
-  // HACER EL UPDATE 
-
   edit: (req, res) => {
-    res.render("users/editProfile", {
-      user: req.session.userLogged
-        
-    });
+    Usuario.findByPk(req.params.id)
+      .then(usuario => {
+        res.render("users/editProfile", { user: usuario });
+      })
+      .catch(error => {
+        res.send(error)
+      })
   },
 
-
+  // HACER EL UPDATE 
   update: async (req, res) => {
 
     try {
@@ -142,15 +143,15 @@ const controlador = {
             }
             else {
               return res.render("users/login"
-              , {
-                errors: {
-                  password: {
-                    msg: "Contraseña incorrecta",
+                , {
+                  errors: {
+                    password: {
+                      msg: "Contraseña incorrecta",
+                    },
                   },
-                },
-                old: req.body
-              }
-            );
+                  old: req.body
+                }
+              );
             }
           }
 
@@ -226,35 +227,6 @@ const controlador = {
 
   addCart: (req, res) => {
     res.redirect("/users/productCart");
-  },
-
-  // HACER EL UPDATE 
-
-  update: async (req, res) => {
-    try {
-      let usuario = await Usuario.findByPk(req.params.id)
-
-      let imagen = usuario.profileImg
-      let imgpath = `../../public/Images/users/${imagen}`
-      if (req.file) {
-        fs.unlinkSync(path.resolve(__dirname, imgpath));
-        imagen = req.file.filename;
-      }
-      await Usuario.update(
-        {
-          firstName: req.body.firstName || usuario.firstName,
-          lastName: req.body.lastName || usuario.lastName,
-          email: req.body.email || usuario.email,
-          profileImg: imagen,
-          password: bcrypt.hashSync(req.body.password, 10) || usuario.password
-        },
-        { where: { id_user: usuario.id_user } }
-      )
-      res.send(usuario)
-    }
-    catch (error) {
-      res.send(error)
-    }
   },
 };
 
