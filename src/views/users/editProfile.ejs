@@ -26,9 +26,9 @@
         <main class="registerForm">
             <section class="form">
 
-                <form method="POST" action="/users/register" enctype="multipart/form-data">
+                <form action="/products/edit/<%= user.id_user %>?_method=PUT" method="post" enctype="multipart/form-data">
 
-                    <h1>Formulario de registro</h1>
+                    <h1>Editar Perfil</h1>
 
                     <div class="inputs">
                         <div class="inputs-top">
@@ -36,7 +36,7 @@
                                 <div class="input">
                                     <label for="firstName"> Nombre </label>
                                     <input type="text" name="firstName" id="firstName"
-                                        value="<%= locals.old && old.firstName %>" />
+                                        value="<%= user.firstName %>" />
                                     <% if (locals.errors && errors.firstName) { %>
                                         <div class="feedback">
                                             <%= errors.firstName.msg %>
@@ -47,7 +47,7 @@
                                 <div class="input">
                                     <label for="password"> Contraseña </label>
                                     <input type="password" name="password" id="password"
-                                        value="<%= locals.old && old.password%>" />
+                                        value="<%= user.password %>" />
                                     <% if (locals.errors && errors.password) { %>
                                         <div class="feedback">
                                             <%= errors.password.msg %>
@@ -61,7 +61,7 @@
                                 <div class="input">
                                     <label for="lastName"> Apellido </label>
                                     <input type="text" name="lastName" id="lastName"
-                                        value="<%= locals.old && old.lastName%>" />
+                                        value="<%= user.lastName %>" />
                                     <% if (locals.errors && errors.lastName) { %>
                                         <div class="feedback">
                                             <%= errors.lastName.msg %>
@@ -72,7 +72,7 @@
                                 <div class="input">
                                     <label for="passwordConfirm"> Confirmar contraseña</label>
                                     <input type="password" name="passwordConfirm" id="passwordConfirm"
-                                        value="<%= locals.old && old.passwordConfirm %>" />
+                                        value=" " />
                                     <% if (locals.errors && errors.passwordConfirm) { %>
                                         <div class="feedback">
                                             <%= errors.passwordConfirm.msg %>
@@ -87,7 +87,8 @@
                     <div class="input-file">
                         <label for="profileImg">Foto de perfil</label>
 
-                        <img src="<%= user.profileImg %>" alt="">
+                        <img src="<%= user.profileImg %>" alt="" style="height: 100px; width: 100px;">
+                        
                         <input type="file" name="profileImg" id="profileImg">
                         <% if (locals.errors && errors.profileImg) { %>
                             <div class="feedback">
