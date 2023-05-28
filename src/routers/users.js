@@ -36,7 +36,7 @@ router.get('/usersList', authMiddleware,userController.userList)
 
 // Editar un usuario
 
-router.get('/update/:id', authMiddleware,userController.update)
+router.get('/edit/:id', authMiddleware,userController.edit)
 
 // Borrar usuario
 

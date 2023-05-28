@@ -82,21 +82,12 @@
                             </div>
                         </div>
 
-                        <div class="input">
-                            <label for="email"> Correo Electronico</label>
-                            <input type="email" name="email" id="email"
-                                value="<%= locals.old && old.email ? old.email: '' %>" />
-                            <% if (locals.errors && errors.email) { %>
-                                <div class="feedback">
-                                    <%= errors.email.msg %>
-                                </div>
-                                <% } %>
-                        </div>
-
 
                     </div>
                     <div class="input-file">
                         <label for="profileImg">Foto de perfil</label>
+
+                        <img src="<%= user.profileImg %>" alt="">
                         <input type="file" name="profileImg" id="profileImg">
                         <% if (locals.errors && errors.profileImg) { %>
                             <div class="feedback">
@@ -107,7 +98,7 @@
 
                     <div class="buttons">
                         <button class="btn-submit" type="submit" title="registrarse">
-                            Registrarse
+                            Actualizar
                         </button>
 
                         <button class="btn-reset" type="reset" title="limpiar">
