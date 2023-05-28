@@ -19,11 +19,13 @@ const controlador = {
     res.render("users/register", {});
   },
 
-<<<<<<< HEAD
   // HACER EL UPDATE 
 
   edit: (req, res) => {
-    res.render("users/editProfile", {});
+    res.render("users/editProfile", {
+      user: req.session.userLogged
+        
+    });
   },
 
 
@@ -55,8 +57,6 @@ const controlador = {
     }
   },
 
-=======
->>>>>>> 22e0a5acdbf282f4ff20fa60b97910f3883d9795
   // Proceso de creacion de un nuevo usuario
   newUser: (req, res) => {
     let user = req.body;
