@@ -124,7 +124,13 @@ const controlador = {
 
   // HACER EL UPDATE 
 
+  edit: (req, res) => {
+    res.render("users/editProfile", {});
+  },
+
+
   update: async (req, res) => {
+
     try {
       let usuario = await Usuario.findByPk(req.params.id)
 

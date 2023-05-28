@@ -13,7 +13,7 @@ const uploadFile = multerMiddleware('users', 'user');
 router.get('/login', guestMiddleware, userController.login);
 
 
-router.get('/editprofile', authMiddleware, userController.update);
+router.get('/editprofile', userController.update);
 
 // Procesar el login
 router.post('/login', userController.loginProcess);
@@ -36,7 +36,7 @@ router.get('/usersList', authMiddleware,userController.userList)
 
 // Editar un usuario
 
-router.put('/update/:id', authMiddleware,userController.update)
+router.get('/update/:id', authMiddleware,userController.update)
 
 // Borrar usuario
 
