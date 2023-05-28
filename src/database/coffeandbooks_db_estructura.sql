@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 10-05-2023 a las 16:33:03
+-- Tiempo de generación: 28-05-2023 a las 20:57:43
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.0.28
 
@@ -75,7 +75,7 @@ CREATE TABLE IF NOT EXISTS `productos` (
   `descripcion` text DEFAULT NULL,
   `cantidad` int(11) DEFAULT 1,
   `precio` int(11) DEFAULT 1,
-  `img` varchar(255) DEFAULT 'default-image.png',
+  `img` varchar(255) NOT NULL DEFAULT 'default-image.png',
   `descuento` int(11) DEFAULT 0,
   `id_autor` int(11) NOT NULL,
   `id_genero` int(11) NOT NULL,
@@ -94,7 +94,7 @@ CREATE TABLE IF NOT EXISTS `productos` (
 
 DROP TABLE IF EXISTS `usuarios`;
 CREATE TABLE IF NOT EXISTS `usuarios` (
-  `id_user` int(11) NOT NULL,
+  `id_user` int(11) NOT NULL AUTO_INCREMENT,
   `firstName` varchar(100) NOT NULL,
   `lastName` varchar(100) NOT NULL,
   `email` varchar(200) NOT NULL,
