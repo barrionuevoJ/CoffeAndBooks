@@ -25,7 +25,9 @@
 
         <main class="registerForm">
             <section class="form">
-
+                <% if (locals.errors) { %>
+                 
+                <% } %>
                 <form method="POST" action="/users/register" enctype="multipart/form-data">
 
                     <h1>Formulario de registro</h1>
