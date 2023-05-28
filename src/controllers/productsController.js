@@ -3,7 +3,8 @@ const path = require('path')
 const toThousand = (n) => n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 
 const { Producto, Genero, Autor, Categoria } = require("../database/models");
-const { error } = require('console');
+
+const { validationResult } = require("express-validator");
 
 const controlador = {
   cart: (req, res) => {

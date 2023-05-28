@@ -14,54 +14,165 @@ const controlador = {
     });
   },
 
+  // Formulario de registro
+  register: (req, res) => {
+    res.render("users/register", {});
+  },
+
+<<<<<<< HEAD
+  // HACER EL UPDATE 
+
+  edit: (req, res) => {
+    res.render("users/editProfile", {});
+  },
+
+
+  update: async (req, res) => {
+
+    try {
+      let usuario = await Usuario.findByPk(req.params.id)
+
+      let imagen = usuario.profileImg
+      let imgpath = `../../public/Images/users/${imagen}`
+      if (req.file) {
+        fs.unlinkSync(path.resolve(__dirname, imgpath));
+        imagen = req.file.filename;
+      }
+      await Usuario.update(
+        {
+          firstName: req.body.firstName || usuario.firstName,
+          lastName: req.body.lastName || usuario.lastName,
+          email: req.body.email || usuario.email,
+          profileImg: imagen,
+          password: bcrypt.hashSync(req.body.password, 10) || usuario.password
+        },
+        { where: { id_user: usuario.id_user } }
+      )
+      res.send(usuario)
+    }
+    catch (error) {
+      res.send(error)
+    }
+  },
+
+=======
+>>>>>>> 22e0a5acdbf282f4ff20fa60b97910f3883d9795
+  // Proceso de creacion de un nuevo usuario
+  newUser: (req, res) => {
+    let user = req.body;
+    let errors = validationResult(req);
+
+    if (errors.isEmpty()) {
+      Usuario.findOne({ where: { email: req.body.email } })
+        .then((foundUser) => {
+          if (foundUser) {
+            if (req.file) {
+              fs.unlinkSync(
+                path.resolve(
+                  __dirname,
+                  "../../public/images/users/" + req.file.filename
+                )
+              );
+            }
+            let errors = {
+              email: {
+                msg: "Email existente",
+              },
+            };
+            delete req.body.password;
+            res.render("users/register", { errors, old: req.body });
+          } else {
+            user.profileImg = req.file ? req.file.filename : "default-user.png";
+            delete user["passwordConfirm"];
+            user.password = bcrypt.hashSync(user.password, 10);
+            Usuario.create(user)
+              .then(() => {
+                res.redirect("/users/login/");
+              })
+              .catch((error) => {
+                res.send(error);
+              });
+          }
+        })
+        .catch((error) => {
+          res.send(error);
+        });
+    } else {
+      if (req.file) {
+        fs.unlinkSync(
+          path.resolve(
+            __dirname,
+            "../../public/images/users/" + req.file.filename
+          )
+        );
+      }
+      delete req.body.password;
+      res.render("users/register", { errors: errors.mapped(), old: req.body });
+    }
+  },
+
   login: (req, res) => {
     res.render("users/login", {});
   },
+
   loginProcess: (req, res) => {
-    Usuario.findOne({
-      where: {
-        email: req.body.email,
-      },
-    })
-      .then((userToLogin) => {
-        if (userToLogin) {
-          let isOkThePassword = bcrypt.compareSync(
-            req.body.password,
-            userToLogin.password
-          );
-          if (isOkThePassword) {
-            delete userToLogin.password;
-            req.session.userLogged = userToLogin;
-            if (req.body.checkUser) {
-              res.cookie("userEmail", req.body.email, {
-                maxAge: 1000 * 60 * 60,
-              });
-            }
-
-            return res.redirect("/");
-          }
-          return res.render("users/login"
-            // , {
-            //   errors: {
-            //     email: {
-            //       msg: "Las credenciales no son válidas",
-            //     },
-            //   },
-            // }
-          );
-        }
-
-        return res.render("users/login", {
-          errors: {
-            email: {
-              msg: "Este email no se encuentra en nuestra base de datos",
-            },
-          },
-        });
+    let errors = validationResult(req);
+    if (errors.isEmpty()) {
+      Usuario.findOne({
+        where: {
+          email: req.body.email,
+        },
       })
-      .catch((error) => {
-        res.send("Error interno del servidor");
-      });
+        .then((userToLogin) => {
+          if (userToLogin) {
+            let isOkThePassword = bcrypt.compareSync(
+              req.body.password,
+              userToLogin.password
+            );
+            if (isOkThePassword) {
+              delete userToLogin.password;
+              req.session.userLogged = userToLogin;
+              if (req.body.checkUser) {
+                res.cookie("userEmail", req.body.email, {
+                  maxAge: 1000 * 60 * 60,
+                });
+              }
+
+              return res.redirect("/");
+            }
+            else {
+              return res.render("users/login"
+              , {
+                errors: {
+                  password: {
+                    msg: "Contraseña incorrecta",
+                  },
+                },
+                old: req.body
+              }
+            );
+            }
+          }
+
+          return res.render("users/login"
+            , {
+              errors: {
+                email: {
+                  msg: "Este correo no esta en nuestra base de datos",
+                },
+              },
+              old: req.body
+            }
+          );
+
+        })
+        .catch((error) => {
+          res.send(error);
+        });
+    }
+    else {
+      return res.render("users/login", { errors: errors.mapped(), old: req.body });
+    }
   },
 
   logout: (req, res) => {
@@ -117,20 +228,9 @@ const controlador = {
     res.redirect("/users/productCart");
   },
 
-  // Formulario de registro
-  register: (req, res) => {
-    res.render("users/register", {});
-  },
-
   // HACER EL UPDATE 
 
-  edit: (req, res) => {
-    res.render("users/editProfile", {});
-  },
-
-
   update: async (req, res) => {
-
     try {
       let usuario = await Usuario.findByPk(req.params.id)
 
@@ -154,60 +254,6 @@ const controlador = {
     }
     catch (error) {
       res.send(error)
-    }
-  },
-
-  // Proceso de creacion de un nuevo usuario
-  newUser: (req, res) => {
-    let user = req.body;
-    let errors = validationResult(req);
-
-    if (errors.isEmpty()) {
-      Usuario.findOne({ where: { email: req.body.email } })
-        .then((foundUser) => {
-          if (foundUser) {
-            if (req.file) {
-              fs.unlinkSync(
-                path.resolve(
-                  __dirname,
-                  "../../public/images/users/" + req.file.filename
-                )
-              );
-            }
-            let errors = {
-              email: {
-                msg: "Email existente",
-              },
-            };
-            delete req.body.password;
-            res.render("users/register", { errors, old: req.body });
-          } else {
-            user.profileImg = req.file ? req.file.filename : "default-user.png";
-            delete user["passwordConfirm"];
-            user.password = bcrypt.hashSync(user.password, 10);
-            Usuario.create(user)
-              .then(() => {
-                res.redirect("/users/login/");
-              })
-              .catch((error) => {
-                res.send(error);
-              });
-          }
-        })
-        .catch((error) => {
-          res.send(error);
-        });
-    } else {
-      if (req.file) {
-        fs.unlinkSync(
-          path.resolve(
-            __dirname,
-            "../../public/images/users/" + req.file.filename
-          )
-        );
-      }
-      delete req.body.password;
-      res.render("users/register", { errors: errors.mapped(), old: req.body });
     }
   },
 };

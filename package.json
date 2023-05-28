@@ -30,6 +30,7 @@
     "mysql2": "^3.2.4",
     "nodemon": "^2.0.21",
     "sequelize": "^6.31.0",
-    "sequelize-cli": "^6.6.0"
+    "sequelize-cli": "^6.6.0",
+    "sweetalert2": "^11.7.5"
   }
 }
