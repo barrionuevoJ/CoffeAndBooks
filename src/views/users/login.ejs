@@ -25,22 +25,31 @@
 
         <main class="loginForm">
             <section class="form">
+                <% if (locals.errors && (errors.email || errors.password)) { %>
+                    <article class="errors">
+                        <div class="text-danger">
+                            <ul>
+                        <% if (errors.email) { %>
+                            <li><%= errors.email.msg %></li>
+                        <% } %>
+                        <% if (errors.password) { %>
+                            <li><%= errors.password.msg %></li>
+                        <% } %>
+                            </ul>    
+                        </div>
+                    </article>
+                <% } %>
                 <form action="/users/login" method="post">
                     <div class="input-user">
                         <label for="email"> Email</label>
-                        <input type="Email" name="email" id="email" placeholder="Ingrese el email"
+                        <input type="email" name="email" id="email" placeholder="Ingrese el email"
                             value="<%= locals.old && old.email ? old.email: '' %>" />
-                        <% if (locals.errors && errors.email) { %>
-                            <div class="text-danger">
-                                <%= errors.email.msg %>
-                            </div>
-                            <% } %>
                     </div>
 
                     <div class="input-pass">
                         <label for="password" class="input-label"> Contraseña </label>
-                        <input type="password" name="password" id="password" placeholder="Ingrese su contraseña" />
-
+                        <input type="password" name="password" id="password" placeholder="Ingrese su contraseña"
+                            value="<%= locals.old && old.password ? old.password : '' %>" />
                     </div>
 
                     <div class="check">
@@ -48,15 +57,12 @@
                         <input type="checkbox" id="checkUser" name="checkUser">
                     </div>
                     <div class="buttons">
-                        <button class="btn-submit" type="submit"> Iniciar Sesion</button>
+                        <button class="btn-submit" type="submit" id="btn-submit"> Iniciar Sesion</button>
                         <a href="/users/register" class="btn-register"> Registrarse </a>
                     </div>
                 </form>
             </section>
-
-
         </main>
-
         <%- include('../partials/mainFooter') %>
 </body>
 
