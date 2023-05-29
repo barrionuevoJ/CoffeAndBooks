@@ -6,7 +6,7 @@ main.profile section.user {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: #709ce1e8;
+    background-color: #b5cef5e8;
     margin: 7vh 0;
     width: 500px;
     height: 550px;
@@ -31,6 +31,7 @@ main.profile section.user article img {
     width: 150px;
     height: 150px;
     border-radius: 50%;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.377);
 }
 
 main.profile section.user a {
