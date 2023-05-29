@@ -1,12 +1,29 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
-main.create section.add {
+main.edit section.update article.errors {
+  position: absolute;
+  background-color: #709ce1ad;
+  right: 3vw;
+  border-radius: 15px;
+  padding: 20px 45px;
+  max-width: 305px;
+}
+
+main.edit section.update article.errors .text-danger {
+  color: red;
+}
+
+main.edit section.update article.errors .text-danger li {
+  margin: 20px 0;
+}
+
+main.edit section.update {
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-main.create section.add form {
+main.edit section.update form {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -19,7 +36,7 @@ main.create section.add form {
   box-shadow: 0 0 10px 5px rgb(0 0 0 / 25%);
 }
 
-main.create section.add form>div {
+main.edit section.update form>div {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
@@ -27,12 +44,12 @@ main.create section.add form>div {
   width: 100%;
 }
 
-main.create section.add form::placeholder {
+main.edit section.update form::placeholder {
   color: #536387;
 }
 
-main.create section.add form input,
-main.create section.add form select {
+main.edit section.update form input,
+main.edit section.update form select {
   border: solid 2px #709ce1;
   width: 100%;
   padding: 10px;
@@ -45,7 +62,7 @@ main.create section.add form select {
   text-align: center;
 }
 
-main.create section.add form textarea {
+main.edit section.update form textarea {
   margin: 20px 0px;
   border: solid 2px #709ce1;
   min-width: 290px;
@@ -57,14 +74,14 @@ main.create section.add form textarea {
   outline: none;
 }
 
-main.create section.add form div.input-number input {
+main.edit section.update form div.input-number input {
   width: 80px;
   text-align: start;
   margin-left: 10px;
 }
 
-main.create section.add form div.input-number,
-main.create section.add form div.input {
+main.edit section.update form div.input-number,
+main.edit section.update form div.input {
   height: 130px;
   margin: 30px 15px;
   display: flex;
@@ -73,16 +90,16 @@ main.create section.add form div.input {
   justify-content: center;
 }
 
-main.create section.add form div.input-file input {
+main.edit section.update form div.input-file input {
   width: auto;
   border: none;
 }
 
-main.create section.add form div.feedback {
+main.edit section.update form div.feedback {
   color: #dd4b3c;
 }
 
-main.create section.add form label {
+main.edit section.update form label {
   color: #07074D;
   font-weight: 500;
   font-size: 18px;
@@ -91,23 +108,23 @@ main.create section.add form label {
 }
 
 
-main.create section.add form div.left-side,
-main.create section.add form div.right-side {
+main.edit section.update form div.left-side,
+main.edit section.update form div.right-side {
   flex: 2;
 }
 
 
-main.create section.add form div.inputs-top,
-main.create section.add form div.inputs-numbers {
+main.edit section.update form div.inputs-top,
+main.edit section.update form div.inputs-numbers {
   display: flex;
 }
 
-main.create section.add form div.buttons {
+main.edit section.update form div.buttons {
   flex: 1;
   flex-direction: row;
 }
 
-main.create section.add form div.buttons button {
+main.edit section.update form div.buttons button {
   width: 200px;
   padding: 15px;
   font-size: 12px;
@@ -123,64 +140,64 @@ main.create section.add form div.buttons button {
   border: none;
 }
 
-main.create section.add div.buttons button:hover {
+main.edit section.update div.buttons button:hover {
   transform: translateY(-7px);
 }
 
-main.create section.add div.buttons button:active {
+main.edit section.update div.buttons button:active {
   transform: translateY(-1px);
 }
 
-main.create section.add form div.buttons button.btn-submit {
+main.edit section.update form div.buttons button.btn-submit {
   background-color: #4cd95b;
   margin-right: 30px;
 }
 
-main.create section.add form div.buttons button.btn-submit:hover {
+main.edit section.update form div.buttons button.btn-submit:hover {
   background-color: #31c423;
   box-shadow: 0px 15px 20px rgba(0, 0, 0, 0.4);
 }
 
-main.create section.add form div.buttons button.btn-reset {
+main.edit section.update form div.buttons button.btn-reset {
   background-color: #d94c4c;
 }
 
-main.create section.add form div.buttons button.btn-reset:hover {
+main.edit section.update form div.buttons button.btn-reset:hover {
   background-color: #c42323;
   box-shadow: 0px 15px 20px rgba(0, 0, 0, 0.4);
 }
 
-main.create .check input {
+main.edit .check input {
   accent-color: red;
   justify-items: right;
   margin: 0px 0px 10px 65px;
 }
 
-main.create div.input {
+main.edit div.input {
   margin: 0 20px;
   flex: 1;
 }
 
 @media (min-width: 369px) {
-  main.create section.add form {
+  main.edit section.update form {
     width: 100%;
   }
 }
 
 @media (min-width: 769px) {
-  main.create section.add form {
+  main.edit section.update form {
     width: 80%;
   }
 }
 
 @media (min-width: 1024px) {
-  main.create section.add form {
+  main.edit section.update form {
     width: 70%;
   }
 }
 
 @media (min-width: 1280px) {
-  main.create section.add form {
+  main.edit section.update form {
     width: 60%;
   }
 }

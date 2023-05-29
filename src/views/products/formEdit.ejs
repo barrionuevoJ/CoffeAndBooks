@@ -10,7 +10,7 @@
 
     <link rel="stylesheet" href="/css/styles-header.css">
     <link rel="stylesheet" href="/css/styles-footer.css">
-    <link rel="stylesheet" href="/css/styles-Form.css">
+    <link rel="stylesheet" href="/css/styles-formEdit.css">
 
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
@@ -21,8 +21,20 @@
 <body>
     <%- include('../partials/mainHeader.ejs') %>
 
-        <main class="create">
-            <section class="add">
+        <main class="edit">
+            <section class="update">
+                
+                <% if (locals.errors) { %>
+                    <article class="errors">
+                        <div class="text-danger">
+                            <ul>
+                                <% for( let prop in errors) { %>
+                                    <li> <%= locals.errors[prop].msg %></li>
+                                <% } %>
+                            </ul>
+                        </div>
+                    </article>
+                <% } %>
 
                 <form action="/products/edit/<%= libro.id_producto %>?_method=PUT" method="post" enctype="multipart/form-data">
                     <h1>Editar producto</h1>
@@ -33,11 +45,6 @@
                                 <div class="input">
                                     <label for="titulo">Titulo</label>
                                     <input type="text" name="titulo" id="titulo" value="<%= libro.titulo  %>">
-                                    <% if (locals.errors && errors.titulo) { %>
-                                        <div class="feedback">
-                                            <%= errors.titulo.msg %>
-                                        </div>
-                                        <% } %>
                                 </div>
 
                                 <div class="input">
@@ -51,16 +58,9 @@
                                             </option>
                                             <%}); %>
                                     </select>
-                                    <% if (locals.errors && errors.genero) { %>
-                                        <div class="feedback">
-                                            <%= errors.genero.msg %>
-                                        </div>
-                                        <% } %>
                                 </div>
                             </div>
-
                             <div class="right-side">
-
                                 <div class="input">
                                     <label for="id_autor">Autor</label>
                                     <select type="number" name="id_autor" id="id_autor">
@@ -72,11 +72,6 @@
                                             </option>
                                             <%}); %>
                                     </select>
-                                    <% if (locals.errors && errors.autor) { %>
-                                        <div class="feedback">
-                                            <%= errors.autor.msg %>
-                                        </div>
-                                        <% } %>
                                 </div>
 
                                 <div class="input">
@@ -90,13 +85,7 @@
                                             </option>
                                             <%}); %>
                                     </select>
-                                    <% if (locals.errors && errors.categoria) { %>
-                                        <div class="feedback">
-                                            <%= errors.categoria.msg %>
-                                        </div>
-                                        <% } %>
                                 </div>
-
                             </div>
                         </div>
 
@@ -105,11 +94,6 @@
                             <label for="descripcion">Descripcion</label>
                             <textarea name="descripcion" id="descripcion" cols="30"
                                 rows="10"><%= libro.descripcion %></textarea>
-                            <% if (locals.errors && errors.descripcion) { %>
-                                <div class="feedback">
-                                    <%= errors.descripcion.msg %>
-                                </div>
-                                <% } %>
                         </div>
 
                         <div class="inputs-numbers">
@@ -134,11 +118,6 @@
                     <div class="input-file">
                         <label for="img">Imagen del producto</label>
                         <input type="file" name="img" id="img" value="<%= locals.old && old.img ? old.img: '' %>">
-                        <% if (locals.errors && errors.img) { %>
-                            <div class="feedback">
-                                <%= errors.img.msg %>
-                            </div>
-                            <% } %>
                     </div>
 
                     <div class="buttons">
