@@ -115,36 +115,52 @@ const controlador = {
   // Actualizar un producto
   update: async function (req, res) {
     try {
-      let producto = await Producto.findByPk(req.params.id)
+      const errors = validationResult(req);
+      if (!errors.isEmpty()) {
+        let promProducto = Producto.findByPk(req.params.id, {
+          include: ["genero", "autor", "categoria"],
+        });
+        let promGeneros = Genero.findAll();
+        let promAutores = Autor.findAll();
+        let promCategorias = Categoria.findAll();
 
-      // Para borrar el archivo viejo, y subir el nuevo
-      let imagen = producto.img
-      let imgpath = `../../public/Images/products/${imagen}`
-      if (req.file) {
-        fs.unlinkSync(path.resolve(__dirname, imgpath));
-        imagen = req.file.filename;
+        Promise.all([promGeneros, promAutores, promCategorias, promProducto])
+          .then(([generos, autores, categorias, producto]) => {
+            return res.render("products/formEdit", { libro: producto, generos, autores, categorias, errors: errors.mapped(), old: req.body });
+          })
+          .catch((error) => res.send(error));
       }
-      await Producto.update(
-        {
-          titulo: req.body.titulo || producto.titulo,
-          descripcion: req.body.descripcion,
-          cantidad: req.body.cantidad,
-          precio: req.body.precio,
-          img: imagen,
-          descuento: req.body.descuento,
-          id_genero: req.body.id_genero,
-          id_autor: req.body.id_autor,
-          id_categoria: req.body.id_categoria,
-        },
-        {
-          where: { id_producto: req.params.id },
+      else {
+        let producto = await Producto.findByPk(req.params.id)
+
+        // Para borrar el archivo viejo, y subir el nuevo
+        let imagen = producto.img
+        let imgpath = `../../public/Images/products/${imagen}`
+        if (req.file) {
+          fs.unlinkSync(path.resolve(__dirname, imgpath));
+          imagen = req.file.filename;
         }
-      )
-      return res.redirect("/");
+        await Producto.update(
+          {
+            titulo: req.body.titulo || producto.titulo,
+            descripcion: req.body.descripcion,
+            cantidad: req.body.cantidad,
+            precio: req.body.precio,
+            img: imagen,
+            descuento: req.body.descuento,
+            id_genero: req.body.id_genero,
+            id_autor: req.body.id_autor,
+            id_categoria: req.body.id_categoria,
+          },
+          {
+            where: { id_producto: req.params.id },
+          }
+        )
+        return res.redirect("/");
+      }
     } catch (error) {
       return res.send(error)
     }
-
   },
 
   // Eliminar un producto
