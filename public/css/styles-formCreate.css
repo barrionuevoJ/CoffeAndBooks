@@ -1,5 +1,23 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
+
+main.create section.add article.errors {
+  position: absolute;
+  background-color: #709ce1ad;
+  right: 3vw;
+  border-radius: 15px;
+  padding: 20px 45px;
+  max-width: 305px;
+}
+
+main.create section.add article.errors .text-danger {
+  color: red;
+}
+
+main.create section.add article.errors .text-danger li {
+  margin: 20px 0;
+}
+
 main.create section.add {
   display: flex;
   align-items: center;

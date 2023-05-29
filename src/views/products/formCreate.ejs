@@ -24,7 +24,19 @@
         <main class="create">
             <section class="add">
 
-                <form action="/products/" method="post" enctype="multipart/form-data">
+                <% if (locals.errors) { %>
+                    <article class="errors">
+                        <div class="text-danger">
+                            <ul>
+                                <% for( let prop in errors) { %>
+                                    <li> <%= locals.errors[prop].msg %></li>
+                                <% } %>
+                            </ul>
+                        </div>
+                    </article>
+                <% } %>
+
+                <form action="/products/create" method="POST" enctype="multipart/form-data">
 
                     <h1>Añadir producto</h1>
 
@@ -33,32 +45,22 @@
                             <div class="left-side">
                                 <div class="input">
                                     <label for="titulo">Titulo</label>
-                                    <input type="text" name="titulo" id="titulo"
-                                        value="<%= locals.old && old.titulo ? old.titulo: '' %>">
-                                    <% if (locals.errors && errors.titulo) { %>
-                                        <div class="feedback">
-                                            <%= errors.titulo.msg %>
-                                        </div>
-                                        <% } %>
+                                    <input type="text" name="titulo" id="titulo" placeholder="Ingrese un titulo"
+                                        value="<%= locals.old && old.titulo ? old.titulo: '' %>" />
                                 </div>
 
                                 <div class="input">
-                                    <label for="id_genero">Genero/s</label>
+                                    <label for="id_genero">Genero</label>
                                     <select type="number" name="id_genero" id="id_genero"
                                         value="<%= locals.old && old.genero ? old.genero: '' %>">
-                                        <option value=""> Seleccione una opcion </option>
+                                        <option value="0"> Seleccione una opcion </option>
                                         <% generos.forEach(genero=> { %>
                                             <option value="<%= genero.id_genero %>" <%=locals.old &&
-                                                old.genero===genero.id_genero ? 'selected' : '' %>>
+                                                old.id_genero==genero.id_genero ? 'selected' : '' %>>
                                                 <%= genero.genero%>
                                             </option>
                                             <%}); %>
                                     </select>
-                                    <% if (locals.errors && errors.genero) { %>
-                                        <div class="feedback">
-                                            <%= errors.genero.msg %>
-                                        </div>
-                                        <% } %>
                                 </div>
                             </div>
 
@@ -68,38 +70,28 @@
                                     <label for="id_autor">Autor</label>
                                     <select type="number" name="id_autor" id="id_autor"
                                         value="<%= locals.old && old.autor ? old.autor: '' %>">
-                                        <option value="">Seleccione una opción</option>
+                                        <option value="0">Seleccione una opción</option>
                                         <% autores.forEach(autor=> { %>
                                                 <option value="<%= autor.id_autor %>" <%=locals.old &&
-                                                    old.autor===autor.id_autor ? 'selected' : '' %>>
+                                                    old.id_autor==autor.id_autor ? 'selected' : '' %>>
                                                     <%= autor.autor%>
                                                 </option>
                                                 <%}); %>
                                     </select>
-                                    <% if (locals.errors && errors.autor) { %>
-                                        <div class="feedback">
-                                            <%= errors.autor.msg %>
-                                        </div>
-                                        <% } %>
                                 </div>
 
                                 <div class="input">
                                     <label for="id_categoria">Categoria</label>
                                     <select name="id_categoria" id="id_categoria"
                                         value="<%= locals.old && old.categoria ? old.categoria: '' %>">
-                                        <option value="">Seleccione una opción</option>
+                                        <option value="0">Seleccione una opción</option>
                                         <% categorias.forEach(categoria=> { %>
                                             <option value="<%= categoria.id_categoria %>" <%=locals.old &&
-                                                old.categoria===categoria.id_categoria ? 'selected' : '' %>>
+                                                old.id_categoria==categoria.id_categoria ? 'selected' : '' %>>
                                                 <%= categoria.categoria%>
                                             </option>
                                             <%}); %>
                                     </select>
-                                    <% if (locals.errors && errors.categoria) { %>
-                                        <div class="feedback">
-                                            <%= errors.categoria.msg %>
-                                        </div>
-                                        <% } %>
                                 </div>
 
                             </div>
@@ -109,12 +101,7 @@
                         <div class="input">
                             <label for="descripcion">Descripcion</label>
                             <textarea name="descripcion" id="descripcion" cols="30"
-                                rows="10"><%= locals.old && old.descripcion ? old.descripcion : '' %></textarea>
-                            <% if (locals.errors && errors.descripcion) { %>
-                                <div class="feedback">
-                                    <%= errors.descripcion.msg %>
-                                </div>
-                                <% } %>
+                                rows="10" placeholder="Ingrese una descripcion"><%= locals.old && old.descripcion ? old.descripcion : '' %></textarea>
                         </div>
 
                         <div class="inputs-numbers">
@@ -122,36 +109,31 @@
                             <div class="input-number">
                                 <label for="cantidad">Cantidad</label>
                                 <input type="number" name="cantidad" id="cantidad"
-                                    value="<%= locals.old && old.cantidad ? old.cantidad: '1' %>">
+                                    value="<%= locals.old && old.cantidad ? old.cantidad: '1' %>" />
                             </div>
 
                             <div class="input-number">
                                 <label for="descuento">Descuento</label>
                                 <input type="number" name="descuento" id="descuento"
-                                    value="<%= locals.old && old.descuento ? old.descuento: '0' %>">
+                                    value="<%= locals.old && old.descuento ? old.descuento: '0' %>" />
                             </div>
 
                             <div class="input-number">
                                 <label for="precio">Precio</label>
                                 <input type="number" name="precio" id="precio"
-                                    value="<%= locals.old && old.precio ? old.precio: '0' %>">
+                                    value="<%= locals.old && old.precio ? old.precio: '0' %>" />
                             </div>
 
                         </div>
                     </div>
                     <div class="input-file">
                         <label for="img">Imagen del producto</label>
-                        <input type="file" name="img" id="img" value="<%= locals.old && old.img ? old.img: '' %>">
-                        <% if (locals.errors && errors.img) { %>
-                            <div class="feedback">
-                                <%= errors.img.msg %>
-                            </div>
-                            <% } %>
+                        <input type="file" name="img" id="img" value="<%= locals.old && old.img ? old.img: '' %>" />
                     </div>
 
                     <div class="buttons">
                         <button type="submit" class="btn-submit" title="Añadir"> Añadir libro </button>
-                        <button type="reset" class="btn-reset" title="Añadir"> Limpiar </button>
+                        <button type="reset" class="btn-reset" title="Limpiar"> Limpiar </button>
                     </div>
 
                 </form>
