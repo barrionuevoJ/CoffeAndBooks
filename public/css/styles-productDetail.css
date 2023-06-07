@@ -22,8 +22,6 @@ section.product-detail div.prices {
   flex-direction: row;
   justify-content: space-around;
   margin-top: 85px;
-  border-style: solid;
-  border-color: rgb(166, 179, 231);
 }
 
 section.product-detail .descripcion span.Des {
@@ -153,13 +151,10 @@ section.product-detail article.product {
   }
 
   section.product-detail .descripcion .admin {
-
-    border-radius: 12px;
-    border-style: solid;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-    margin: 100px 0 0 0;
+    margin: auto 0;
   }
 
   section.product-detail .descripcion div.admin .button-delete {

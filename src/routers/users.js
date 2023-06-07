@@ -5,6 +5,7 @@ const userController = require('../controllers/userController');
 const multerMiddleware = require('../middleware/multer');
 const userRegisterValidation = require('../middleware/userRegisterValidation')
 const userLoginValidation = require('../middleware/userLoginMiddleware')
+const userEditValidation = require('../middleware/userEditProfileValidation')
 const guestMiddleware = require('../middleware/guestMiddleware')
 const authMiddleware = require('../middleware/authMiddleware')
 
@@ -13,17 +14,14 @@ const uploadFile = multerMiddleware('users', 'user');
 // Formulario de login
 router.get('/login', guestMiddleware, userController.login);
 
-
-router.get('/editprofile', userController.update);
-
 // Procesar el login
-router.post('/login', userLoginValidation,userController.loginProcess);
+router.post('/login', userLoginValidation, userController.loginProcess);
 
 // Cerrar sesión
-router.get('/logout', authMiddleware,userController.logout);
+router.get('/logout', authMiddleware, userController.logout);
 
 //Perfil de usuario
-router.get('/profile', authMiddleware,userController.profile);
+router.get('/profile', authMiddleware, userController.profile);
 
 // Formulario de registro de usuario
 router.get('/register', guestMiddleware, userController.register);
@@ -33,14 +31,17 @@ router.post('/register', uploadFile.single('profileImg'), userRegisterValidation
 
 // Lista de usuarios
 
-router.get('/usersList', authMiddleware,userController.userList)
+router.get('/usersList', authMiddleware, userController.userList)
 
 // Editar un usuario
 
-router.get('/edit/:id', authMiddleware,userController.edit)
+router.get('/edit/:id', authMiddleware, userController.edit)
+
+// Subir los cambios
+router.put('/editProfile/:id', authMiddleware, uploadFile.single('profileImg'), userEditValidation, userController.update);
 
 // Borrar usuario
 
-router.delete('/delete/:id', authMiddleware,userController.userDestroy)
+router.delete('/delete/:id', authMiddleware, userController.userDestroy)
 
 module.exports = router;

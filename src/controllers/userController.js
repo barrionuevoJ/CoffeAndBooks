@@ -31,30 +31,61 @@ const controlador = {
 
   // HACER EL UPDATE 
   update: async (req, res) => {
-
     try {
-      let usuario = await Usuario.findByPk(req.params.id)
+      const errors = validationResult(req);
+      const id = req.params.id;
 
-      let imagen = usuario.profileImg
-      let imgpath = `../../public/Images/users/${imagen}`
-      if (req.file) {
-        fs.unlinkSync(path.resolve(__dirname, imgpath));
-        imagen = req.file.filename;
-      }
-      await Usuario.update(
-        {
+      if (!errors.isEmpty()) {
+        const usuario = await Usuario.findByPk(id);
+        if (usuario) {
+          if (req.file) {
+            fs.unlinkSync(
+              path.resolve(
+                __dirname,
+                "../../public/images/users/" + req.file.filename
+              )
+            );
+          }
+          delete req.body.passwordConfirm;
+          return res.render("users/editProfile", {
+            user: usuario,
+            errors: errors.mapped(),
+            old: req.body,
+          });
+        } else {
+          return res.send("Usuario no encontrado");
+        }
+      } else {
+        const usuario = await Usuario.findByPk(id);
+        if (!usuario) {
+          return res.send("Usuario no encontrado");
+        }
+
+        let imagen = usuario.profileImg;
+        if (req.file) {
+          fs.unlinkSync(path.resolve(__dirname, "../../public/Images/users/", imagen));
+          imagen = req.file.filename;
+        }
+
+        const updatedUsuario = {
           firstName: req.body.firstName || usuario.firstName,
           lastName: req.body.lastName || usuario.lastName,
           email: req.body.email || usuario.email,
           profileImg: imagen,
-          password: bcrypt.hashSync(req.body.password, 10) || usuario.password
-        },
-        { where: { id_user: usuario.id_user } }
-      )
-      res.send(usuario)
-    }
-    catch (error) {
-      res.send(error)
+        };
+
+        if (req.body.passwordConfirm) {
+          updatedUsuario.password = bcrypt.hashSync(req.body.passwordConfirm, 10);
+        }
+
+        await Usuario.update(updatedUsuario, {
+          where: { id_user: usuario.id_user },
+        });
+
+        res.redirect("/users/profile");
+      }
+    } catch (error) {
+      res.send(error);
     }
   },
 
@@ -221,7 +252,6 @@ const controlador = {
   },
 
   cart: (req, res) => {
-    // const carrito = productModel.carrito();
     res.render("users/productCart", { carrito, toThousand });
   },
 
