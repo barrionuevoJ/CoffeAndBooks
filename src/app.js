@@ -1,47 +1,25 @@
-const express = require('express');
-const path = require('path');
-const methodOverride = require('method-override');
-const session = require('express-session');
-const cookies = require('cookie-parser')
+import logo from './logo.svg';
+import './App.css';
 
-const app = express();
+function App() {
+  return (
+    <div className="App">
+      <header className="App-header">
+        <img src={logo} className="App-logo" alt="logo" />
+        <p>
+          Edit <code>src/App.js</code> and save to reload.
+        </p>
+        <a
+          className="App-link"
+          href="https://reactjs.org"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Learn React
+        </a>
+      </header>
+    </div>
+  );
+}
 
-const userLoggedMiddleware = require('./middleware/userLoggedMIddleware')
-
-app.use(session({
-    secret: 'Coffe & Books',
-    resave: false,
-    saveUninitialized: false,
-}));
-
-app.use(cookies())
-
-app.use(userLoggedMiddleware)
-
-app.use(express.static('public'));
-app.use(express.urlencoded({ extended: false }));
-
-app.use(express.json());
-
-app.use(methodOverride('_method')); // Pasar poder pisar el method="POST" en el formulario por PUT y DELETE
-
-app.set('view engine', 'ejs');
-app.set('views', path.join(__dirname, '/views'))
-
-// Rutas
-
-const mainRoutes = require('./routers/main');
-const usersRoutes = require('./routers/users');
-const productsRoutes = require('./routers/products');
-
-app.use('/', mainRoutes);
-app.use('/products', productsRoutes);
-app.use('/users', usersRoutes);
-app.use((req, res, next) => {
-    res.status(404).render('main/error-404');
-})
-
-
-const port = 3030;
-
-app.listen(port, () => console.log(`Servidor funcionando en el puerto ${port}!`));
+export default App;
