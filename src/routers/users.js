@@ -6,7 +6,8 @@ const multerMiddleware = require('../middleware/multer');
 const userRegisterValidation = require('../middleware/userRegisterValidation')
 const userLoginValidation = require('../middleware/userLoginMiddleware')
 const guestMiddleware = require('../middleware/guestMiddleware')
-const authMiddleware = require('../middleware/authMiddleware')
+const authMiddleware = require('../middleware/authMiddleware');
+const userLoggedMiddleware = require('../middleware/userLoggedMIddleware');
 
 const uploadFile = multerMiddleware('users', 'user');
 
@@ -37,7 +38,8 @@ router.get('/usersList', authMiddleware,userController.userList)
 
 // Editar un usuario
 
-router.put('/edit/:id', authMiddleware,userController.edit)
+router.get('/edit/:id', authMiddleware,userController.edit)
+router.put('/edit/:id', authMiddleware,uploadFile.single('img'),userLoggedMiddleware,userController.update)
 
 // Borrar usuario
 

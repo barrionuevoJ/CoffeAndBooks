@@ -47,12 +47,14 @@
                                     <label for="firstName"> Nombre </label>
                                     <input type="text" name="firstName" id="firstName"
                                         value="<%= locals.old && old.firstName %>" />
+                                    <span class="p_name" style="color: red;"></span>
                                 </div>
 
                                 <div class="input">
                                     <label for="password"> Contraseña </label>
                                     <input type="password" name="password" id="password"
                                     value="<%= locals.old && old.password ? old.password : '' %>" />
+                                    <span class="p_password" style="color: red;"></span>
                                 </div>
                             </div>
 
@@ -62,12 +64,14 @@
                                     <label for="lastName"> Apellido </label>
                                     <input type="text" name="lastName" id="lastName"
                                         value="<%= locals.old && old.lastName%>" />
+                                    <span class="p_surname" style="color: red;"></span>
                                 </div>
 
                                 <div class="input">
                                     <label for="passwordConfirm"> Confirmar contraseña</label>
                                     <input type="password" name="passwordConfirm" id="passwordConfirm"
                                     value="<%= locals.old && old.passwordConfirm ? old.passwordConfirm : '' %>" />
+                                    <span class="p_passcon" style="color: red;"></span>
                                 </div>
                             </div>
                         </div>
@@ -76,12 +80,14 @@
                             <label for="email"> Correo Electronico</label>
                             <input type="email" name="email" id="email"
                                 value="<%= locals.old && old.email ? old.email: '' %>" />
+                                <span class="p_email" style="color: red;"></span>
                         </div>
 
                     </div>
                     <div class="input-file">
                         <label for="profileImg">Foto de perfil</label>
                         <input type="file" name="profileImg" id="profileImg">
+                        <span class="p_img" style="color: red;"></span>
                     </div>
 
                     <div class="buttons">
@@ -100,7 +106,7 @@
 
         <%- include('../partials/mainFooter') %>
 
-        <script src="/js/validation.js"></script>
+        <script src="/js/registerValidation.js"></script>
 </body>
 
 </html>

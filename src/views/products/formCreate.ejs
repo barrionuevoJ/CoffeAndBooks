@@ -47,6 +47,7 @@
                                     <label for="titulo">Titulo</label>
                                     <input type="text" name="titulo" id="titulo" placeholder="Ingrese un titulo"
                                         value="<%= locals.old && old.titulo ? old.titulo: '' %>" />
+                                    <span class="p_title" style="color: red;"></span>
                                 </div>
 
                                 <div class="input">
@@ -102,6 +103,7 @@
                             <label for="descripcion">Descripcion</label>
                             <textarea name="descripcion" id="descripcion" cols="30"
                                 rows="10" placeholder="Ingrese una descripcion"><%= locals.old && old.descripcion ? old.descripcion : '' %></textarea>
+                            <span class="p_description" style="color: red;"></span>
                         </div>
 
                         <div class="inputs-numbers">
@@ -129,6 +131,7 @@
                     <div class="input-file">
                         <label for="img">Imagen del producto</label>
                         <input type="file" name="img" id="img" value="<%= locals.old && old.img ? old.img: '' %>" />
+                        <span class="p_img" style="color: red;"></span>
                     </div>
 
                     <div class="buttons">
@@ -141,6 +144,8 @@
             </section>
         </main>
         <%- include('../partials/mainFooter.ejs') %>
+
+        <script src="/js/createProductValidation.js"></script>
 </body>
 
 </html>

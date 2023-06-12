@@ -41,12 +41,14 @@
                         <label for="email"> Email</label>
                         <input type="email" name="email" id="email" placeholder="Ingrese el email"
                             value="<%= locals.old && old.email ? old.email: '' %>" />
+                        <span class="p_email" style="color: red;"></span>
                     </div>
 
                     <div class="input-pass">
                         <label for="password" class="input-label"> Contraseña </label>
                         <input type="password" name="password" id="password" placeholder="Ingrese su contraseña"
                             value="<%= locals.old && old.password ? old.password : '' %>" />
+                            <span class="p_password" style="color: red;"></span>
                     </div>
 
                     <div class="check">
@@ -59,8 +61,11 @@
                     </div>
                 </form>
             </section>
+
         </main>
         <%- include('../partials/mainFooter') %>
+
+        <script src="/js/loginValidation.js"></script>
 </body>
 
 </html>
