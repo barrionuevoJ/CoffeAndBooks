@@ -1,0 +1,17 @@
+{
+  "name": "coffeandbooks",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "nodemon src/app.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "mysql2": "^3.3.4",
+    "nodemon": "^2.0.22",
+    "sequelize": "^6.32.0"
+  }
+}
