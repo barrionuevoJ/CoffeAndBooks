@@ -48,9 +48,12 @@ const productsAPIController = {
                 let respuesta = {
                     meta: {
                         status: 200,
-                        url: '/api/producto/:id'
+                        url: `http://localhost:3005/Images/products/api/producto/${producto.id_producto}`
                     },
-                    data: producto
+                    data: {
+                        producto,
+                        img_URL: `http://localhost:3005/Images/products/${producto.img}`
+                    }
                 }
                 res.json(respuesta);
             });
