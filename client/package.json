@@ -1,5 +1,5 @@
 {
-  "name": "sprint_8",
+  "name": "client",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -11,16 +11,6 @@
     "react-scripts": "5.0.1",
     "web-vitals": "^2.1.4"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/barrionuevoJ/CoffeAndBooks_sprint_8.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/barrionuevoJ/CoffeAndBooks_sprint_8/issues"
-  },
-  "homepage": "https://github.com/barrionuevoJ/CoffeAndBooks_sprint_8#readme",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
