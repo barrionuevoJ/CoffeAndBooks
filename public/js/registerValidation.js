@@ -10,18 +10,18 @@ window.onload = () => {
         let errors = [];
         let ps = document.querySelector('.p_name')
 
-        if (firstName.value.length < 2) {
+        if (firstName.value.length < 2 && firstName.value.length > 0) {
             errors.push("Debe contener por lo menos 2 caracteres")
-            ps.textContent = errors;
-        };
-
-        if (firstName.value == 0 && ps.textContent == "") {
-            errors.push("Campo obligatorio")
             ps.textContent = errors;
         }
 
         else {
             ps.textContent = "";
+        }
+
+        if (firstName.value.length < 1 && ps.textContent == "") {
+            errors.push("Campo obligatorio")
+            ps.textContent = errors;
         }
 
         if (errors.length > 0) {
@@ -31,20 +31,25 @@ window.onload = () => {
 
     lastName.addEventListener('blur', function (e) {
         let errors = [];
+        let ps = document.querySelector('.p_surname')
 
-        if (lastName.value == 0) {
-            errors.push("Campo obligatorio")
-            console.log(errors);
+        if (lastName.value.length < 2 && lastName.value.length > 0) {
+            errors.push("Debe contener por lo menos 2 caracteres")
+            ps.textContent = errors;
         }
 
-        if (lastName.value.length < 3) {
-            errors.push("Debe contener por lo menos 2 caracteres")
-            console.log(errors);
+        else {
+            ps.textContent = "";
+        }
+
+        if (lastName.value.length < 1 && ps.textContent == "") {
+            errors.push("Campo obligatorio")
+            ps.textContent = errors;
         }
 
         if (errors.length > 0) {
             e.preventDefault();
-        };
+        }
 
 
     });
@@ -52,28 +57,39 @@ window.onload = () => {
     password.addEventListener('blur', function (e) {
         let errors = [];
         let ver = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+        let ps = document.querySelector('.p_password')
 
-        if (!ver.test(password.value)) {
+        if (!ver.test(password.value) && password.value.length > 0) {
             errors.push("La contraseña debe contener por lo menos 8 caracteres (Mayuscula, Minuscula, numero y simbolo)")
-            console.log(errors)
+            ps.textContent = errors;
         }
 
-        if (errors.length > 0) {
-            e.preventDefault()
+        else {
+            ps.textContent = "";
+        }
+
+        if (password.value.length < 1 && ps.textContent == "") {
+            errors.push("Campo obligatorio")
+            ps.textContent = errors;
         }
     })
 
     confirmationPassword.addEventListener('blur', function (e) {
         let errors = [];
+        let ps = document.querySelector('.p_passcon')
 
         if (confirmationPassword.value !== password.value) {
             errors.push("Las contraseñas no coinciden")
-            console.log(errors)
+            ps.textContent = errors
         }
 
-        if (confirmationPassword.value.length < 1) {
+        else {
+            ps.textContent = ""
+        }
+
+        if (confirmationPassword.value.length < 1 && ps.textContent == "") {
             errors.push("Campo obligatorio")
-            console.log(errors);
+            ps.textContent = errors
         }
 
         if (errors.length > 0) {
@@ -81,32 +97,38 @@ window.onload = () => {
         }
     })
 
-    email.addEventListener("blur", function(e){
+    email.addEventListener("blur", function (e) {
         let errors = [];
         let ver = /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/;
+        let ps = document.querySelector('.p_email')
 
-        if (!ver.test(email.value)) {
-            errors.push("Ingrese un email valido");
-            console.log(errors)
+        if (!ver.test(email.value) && email.value.length > 0) {
+            errors.push("Ingrese un mail valido")
+            ps.textContent = " " + errors
         }
 
-        if (email.value.length == 0) {
-            errors.push("Campo obligatorio");
-            console.log(errors)
+        else {
+            ps.textContent = ""
         }
 
-        if (errors.length > 0) {
-            e.preventDefault();
+        if (email.value.length == 0 && ps.textContent == "") {
+            errors.push("Campo obligatorio")
+            ps.textContent = " " + errors
         }
     })
 
-    profilePic.addEventListener("blur", function(e){
+    profilePic.addEventListener("blur", function (e) {
         let errors = []
         let ver = /(\.jpg|\.jpeg|\.png)$/i;
+        let ps = document.querySelector('.p_img')
 
         if (ver.exec(email.value)) {
             errors.push("Solo soportamos .jpg, .jpeg, .png");
-            console.log(errors);
+            ps.textContent = errors;
+        }
+
+        else {
+            ps.textContent = ""
         }
 
         if (errors.length > 0) {
