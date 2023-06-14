@@ -1,5 +1,4 @@
 const db = require('../database/models');
-const path = require('path')
 
 const productsAPIController = {
     'list': (req, res) => {
@@ -21,7 +20,7 @@ const productsAPIController = {
                         status: 200,
                         count: productos.length,
                         countByCategory: countByCategory,
-                        url: 'api/productos'
+                        url: 'api/products'
                     },
                     products: productos.map(producto => {
                         return {
