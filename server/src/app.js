@@ -4,6 +4,7 @@ const methodOverride = require('method-override');
 const session = require('express-session');
 const cookies = require('cookie-parser')
 const env = require('dotenv')
+const cors = require('cors')
 
 const app = express();
 
@@ -15,7 +16,9 @@ app.use(session({
     saveUninitialized: false,
 }));
 
-env.config()
+app.use(cors())
+
+env.config({path: path.join(__dirname, '../../client/.env')})
 
 app.use(cookies())
 
@@ -52,6 +55,6 @@ app.use((req, res, next) => {
     res.status(404).render('main/error-404');
 })
 
-const port = process.env.PORT || 3005;
+const port = process.env.REACT_APP_PORT || 3005;
 
 app.listen(port, () => console.log(`Servidor funcionando en el puerto ${port}!`));
