@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/styles-header.css">
+    <link rel="stylesheet" href="/css/styles-footer.css">
+
+    <link rel="stylesheet" href="/css/styles-formCreate.css">
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+
+    <title>Coffe & Books</title>
+</head>
+
+<body>
+    <%- include('../partials/mainHeader.ejs') %>
+
+        <main class="create">
+            <section class="add">
+
+                <% if (locals.errors) { %>
+                    <article class="errors">
+                        <div class="text-danger">
+                            <ul>
+                                <% for( let prop in errors) { %>
+                                    <li> <%= locals.errors[prop].msg %></li>
+                                <% } %>
+                            </ul>
+                        </div>
+                    </article>
+                <% } %>
+
+                <form action="/products/create" method="POST" enctype="multipart/form-data">
+
+                    <h1>Añadir producto</h1>
+
+                    <div class="inputs">
+                        <div class="inputs-top">
+                            <div class="left-side">
+                                <div class="input">
+                                    <label for="titulo">Titulo</label>
+                                    <input type="text" name="titulo" id="titulo" placeholder="Ingrese un titulo"
+                                        value="<%= locals.old && old.titulo ? old.titulo: '' %>" />
+                                    <span class="p_title" style="color: red;"></span>
+                                </div>
+
+                                <div class="input">
+                                    <label for="id_genero">Genero</label>
+                                    <select type="number" name="id_genero" id="id_genero"
+                                        value="<%= locals.old && old.genero ? old.genero: '' %>">
+                                        <option value="0"> Seleccione una opcion </option>
+                                        <% generos.forEach(genero=> { %>
+                                            <option value="<%= genero.id_genero %>" <%=locals.old &&
+                                                old.id_genero==genero.id_genero ? 'selected' : '' %>>
+                                                <%= genero.genero%>
+                                            </option>
+                                            <%}); %>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="right-side">
+
+                                <div class="input">
+                                    <label for="id_autor">Autor</label>
+                                    <select type="number" name="id_autor" id="id_autor"
+                                        value="<%= locals.old && old.autor ? old.autor: '' %>">
+                                        <option value="0">Seleccione una opción</option>
+                                        <% autores.forEach(autor=> { %>
+                                                <option value="<%= autor.id_autor %>" <%=locals.old &&
+                                                    old.id_autor==autor.id_autor ? 'selected' : '' %>>
+                                                    <%= autor.autor%>
+                                                </option>
+                                                <%}); %>
+                                    </select>
+                                </div>
+
+                                <div class="input">
+                                    <label for="id_categoria">Categoria</label>
+                                    <select name="id_categoria" id="id_categoria"
+                                        value="<%= locals.old && old.categoria ? old.categoria: '' %>">
+                                        <option value="0">Seleccione una opción</option>
+                                        <% categorias.forEach(categoria=> { %>
+                                            <option value="<%= categoria.id_categoria %>" <%=locals.old &&
+                                                old.id_categoria==categoria.id_categoria ? 'selected' : '' %>>
+                                                <%= categoria.categoria%>
+                                            </option>
+                                            <%}); %>
+                                    </select>
+                                </div>
+
+                            </div>
+                        </div>
+
+
+                        <div class="input">
+                            <label for="descripcion">Descripcion</label>
+                            <textarea name="descripcion" id="descripcion" cols="30"
+                                rows="10" placeholder="Ingrese una descripcion"><%= locals.old && old.descripcion ? old.descripcion : '' %></textarea>
+                            <span class="p_description" style="color: red;"></span>
+                        </div>
+
+                        <div class="inputs-numbers">
+
+                            <div class="input-number">
+                                <label for="cantidad">Cantidad</label>
+                                <input type="number" name="cantidad" id="cantidad"
+                                    value="<%= locals.old && old.cantidad ? old.cantidad: '1' %>" />
+                            </div>
+
+                            <div class="input-number">
+                                <label for="descuento">Descuento</label>
+                                <input type="number" name="descuento" id="descuento"
+                                    value="<%= locals.old && old.descuento ? old.descuento: '0' %>" />
+                            </div>
+
+                            <div class="input-number">
+                                <label for="precio">Precio</label>
+                                <input type="number" name="precio" id="precio"
+                                    value="<%= locals.old && old.precio ? old.precio: '0' %>" />
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="input-file">
+                        <label for="img">Imagen del producto</label>
+                        <input type="file" name="img" id="img" value="<%= locals.old && old.img ? old.img: '' %>" />
+                        <span class="p_img" style="color: red;"></span>
+                    </div>
+
+                    <div class="buttons">
+                        <button type="submit" class="btn-submit" title="Añadir"> Añadir libro </button>
+                        <button type="reset" class="btn-reset" title="Limpiar"> Limpiar </button>
+                    </div>
+
+                </form>
+
+            </section>
+        </main>
+        <%- include('../partials/mainFooter.ejs') %>
+
+        <script src="/js/createProductValidation.js"></script>
+</body>
+
+</html>

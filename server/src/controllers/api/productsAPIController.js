@@ -1,4 +1,4 @@
-const db = require('../database/models');
+const db = require('../../database/models');
 
 const productsAPIController = {
     'list': (req, res) => {
@@ -30,7 +30,7 @@ const productsAPIController = {
                             genero: [{ id_genero: producto.id_genero, genero: producto.genero.genero }],
                             autor: [{ id_autor: producto.id_autor, autor: producto.autor.autor }],
                             categoria: [{ id_categoria: producto.id_categoria, categoria: producto.categoria.categoria }],
-                            detail: `http://localhost:${process.env.PORT}/api/products/${producto.id_producto}`
+                            detail: `http://localhost:${process.env.PORT || 3005}/api/products/${producto.id_producto}`
                         };
                     })
                 }
@@ -47,11 +47,11 @@ const productsAPIController = {
                 let respuesta = {
                     meta: {
                         status: 200,
-                        url: `http://localhost:${process.env.PORT}/api/products/${producto.id_producto}`
+                        url: `http://localhost:${process.env.PORT || 3005}/api/products/${producto.id_producto}`
                     },
                     data: {
                         producto,
-                        img_URL: `http://localhost:${process.env.PORT}/Images/products/${producto.img}`
+                        img_URL: `http://localhost:${process.env.PORT || 3005}/Images/products/${producto.img}`
                     }
                 }
                 res.json(respuesta);

@@ -1,4 +1,4 @@
-const db = require('../database/models');
+const db = require('../../database/models');
 
 const usersAPIController = {
     'list': (req, res) => {
@@ -15,7 +15,7 @@ const usersAPIController = {
                             id: usuario.id_user,
                             name: usuario.firstName,
                             email: usuario.email,
-                            detail: `http://localhost:3005/api/users/${usuario.id_user}`
+                            detail: `http://localhost:${process.env.PORT || 3005}/api/users/${usuario.id_user}`
                         };
                     })
                 }
@@ -29,14 +29,14 @@ const usersAPIController = {
                 let respuesta = {
                     meta: {
                         status: 200,
-                        url: `http://localhost:3005/api/products/${usuario.id_user}`
+                        url: `http://localhost:${process.env.PORT || 3005}/api/products/${usuario.id_user}`
                     },
                     data: {
                         id: usuario.id_user,
                         firstName: usuario.firstName,
                         lastName: usuario.lastName,
                         email: usuario.email,
-                        img_URL: `http://localhost:3005/Images/users/${usuario.profileImg}`
+                        img_URL: `http://localhost:${process.env.PORT || 3005}/Images/users/${usuario.profileImg}`
                     }
                 }
                 res.json(respuesta);

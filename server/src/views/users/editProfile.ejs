@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="icon" href="/Images/Logo.ico">
+
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/styles-register.css">
+    <link rel="stylesheet" href="/css/styles-header.css">
+    <link rel="stylesheet" href="/css/styles-footer.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" rel="stylesheet" />
+
+    <title>Coffe&Books</title>
+</head>
+
+<body>
+
+    <%- include('../partials/mainHeader') %>
+
+        <main class="registerForm">
+            <section class="form">
+
+                <% if (locals.errors) { %>
+                    <article class="errors">
+                        <div class="text-danger">
+                            <ul>
+                                <% for( let prop in errors) { %>
+                                    <li>
+                                        <%= locals.errors[prop].msg %>
+                                    </li>
+                                    <% } %>
+                            </ul>
+                        </div>
+                    </article>
+                    <% } %>
+
+                        <form action="/users/editProfile/<%= user.id_user %>?_method=PUT" method="POST"
+                            enctype="multipart/form-data">
+                            <h1>Editar Perfil</h1>
+
+                            <div class="inputs">
+                                <div class="inputs-top">
+                                    <div class="left-side">
+                                        <div class="input">
+                                            <label for="firstName"> Nombre </label>
+                                            <input type="text" name="firstName" id="firstName"
+                                                value="<%= user.firstName %>" />
+                                        </div>
+
+                                        <div class="input">
+                                            <label for="password"> Contraseña </label>
+                                            <input type="password" name="password" id="password"
+                                                value="<%= locals.old && old.password ? old.password : '' %>" placeholder="Llenar si quiere cambiar la contraseña"/>
+                                            <h5>- Minimo 8 caracteres</h5>
+                                        </div>
+                                    </div>
+
+                                    <div class="right-side">
+
+                                        <div class="input">
+                                            <label for="lastName"> Apellido </label>
+                                            <input type="text" name="lastName" id="lastName"
+                                                value="<%= user.lastName %>" />
+                                        </div>
+
+                                        <div class="input">
+                                            <label for="passwordConfirm"> Confirmar contraseña</label>
+                                            <input type="password" name="passwordConfirm" id="passwordConfirm"
+                                                value="<%= locals.old && old.passwordConfirm ? old.passwordConfirm : '' %>" placeholder="Confirmar contraseña"/>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="input">
+                                    <label for="email"> Correo Electronico</label>
+                                    <input type="email" name="email" id="email" value="<%= user.email %>" />
+                                </div>
+
+                            </div>
+                            <div class="input-file">
+                                <label for="profileImg">Foto de perfil</label>
+
+                                <img src="/Images/users/<%= user.profileImg %>" alt=""
+                                    style="height: 100px; width: 100px;">
+
+                                <input type="file" name="profileImg" id="profileImg">
+                            </div>
+
+                            <div class="buttons">
+                                <button class="btn-submit" type="submit" title="registrarse">
+                                    Actualizar
+                                </button>
+
+                                <button class="btn-reset" type="reset" title="limpiar">
+                                    Limpiar
+                                </button>
+                            </div>
+                        </form>
+            </section>
+
+        </main>
+
+        <%- include('../partials/mainFooter') %>
+
+</body>
+
+</html>

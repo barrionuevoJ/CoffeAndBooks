@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="icon" href="/Images/Logo.ico">
+
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/styles-profile.css">
+    <link rel="stylesheet" href="/css/styles-header.css">
+    <link rel="stylesheet" href="/css/styles-footer.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" rel="stylesheet" />
+
+    <title>Coffe&Books</title>
+</head>
+
+<body>
+    <%- include('../partials/mainHeader') %>
+
+        <main class="profile">
+            <section class="user">
+                <h1 style="margin: 20px 0">Perfil de usuario</h1>
+                <article>
+                    <div class="top">
+                    <img src="/images/users/<%= user.profileImg %>" alt="userImg" />
+                    <div class="parrafs" style="text-align: initial;">
+                        <p>
+                            <b>Nombre: </b>
+                            <%= user.firstName %>
+                        </p>
+                        <p>
+                            <b>Apellido: </b>
+                            <%= user.lastName %>
+                        </p>
+                        <p>
+                            <b>Email: </b>
+                            <%= user.email %>
+                        </p>
+                    </div>
+                    </div>
+
+                    <div class="buttons">
+                        <a href="/users/logout" class="logOut">Cerrar Sesion</a>
+    
+                        <a href="/users/edit/<%= user.id_user %>" class="editProf">Editar Perfil</a>
+                    </div>
+                </article>
+            </section>
+        </main>
+
+        <%- include('../partials/mainFooter') %>
+</body>
+
+</html>
