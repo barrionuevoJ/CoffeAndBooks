@@ -1,11 +1,16 @@
+import React from 'react'
 import '../assets/css/App.css';
-import TopBar from './TopBar';
+import BarraLateral from './BarraLateral';
+import Contenido from './Contenido'
 
 function App() {
   return (
-    <div className="App">
-      <TopBar />    
-    </div>
+    <React.Fragment>
+      <div className="App">
+        <BarraLateral />
+        <Contenido />
+      </div>
+    </React.Fragment>
   );
 }
 
