@@ -103,7 +103,7 @@ window.onload = () => {
         let ps = document.querySelector('.p_email')
 
         if (!ver.test(email.value) && email.value.length > 0) {
-            errors.push("Ingrese un mail valido")
+            errors.push("Ingrese un email valido")
             ps.textContent = " " + errors
         }
 
