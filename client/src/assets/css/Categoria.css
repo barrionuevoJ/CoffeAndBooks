@@ -1,0 +1,26 @@
+.card {
+    margin-bottom: 1.5rem!important;
+    flex: 0 0 50%;
+    max-width: 50%;
+    position: relative;
+    width: 100%;
+    padding-right: 0.75rem;
+    padding-left: 0.75rem;
+}
+
+.card-body-contain {
+    display: flex;
+    background-image: linear-gradient(190deg,#8846b9 10%,#2d92cd 100%);
+    color: #fff;
+    position: relative;
+    flex-direction: column;
+    word-wrap: break-word;
+    border: 1px solid #e3e6f0;
+    border-radius: 13px;
+    box-shadow: 0 .15rem 1.75rem 0 rgba(58,59,69,.15);
+}
+
+.card-text {
+    flex: 1 1 auto;
+    padding: 1.25rem;
+}

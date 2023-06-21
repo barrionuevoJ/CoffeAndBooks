@@ -1,0 +1,30 @@
+.BarraLateral {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    padding: 0 20px;
+    margin-bottom: 0;
+    background-color: #a6d5eb;
+    background-image: linear-gradient(180deg,#5384e3 10%,#33076e 100%);
+    background-size: cover;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+    cursor: pointer;
+    margin: 5px 0;
+}
+
+a:hover {
+    color: rgb(0 243 255);
+}
+
+.contenedor-imagen {
+    display: flex;
+    justify-content: center;
+}
+
+.imagen {
+    width: 100px;
+}
