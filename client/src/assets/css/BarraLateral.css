@@ -5,7 +5,7 @@
     padding: 0 20px;
     margin-bottom: 0;
     background-color: #a6d5eb;
-    background-image: linear-gradient(180deg,#a6d5eb 10%,#3533c3 100%);
+    background-image: linear-gradient(180deg,#5384e3 10%,#33076e 100%);
     background-size: cover;
 }
 
@@ -17,7 +17,7 @@ a {
 }
 
 a:hover {
-    color: rgb(162, 0, 255)
+    color: rgb(0 243 255);
 }
 
 .contenedor-imagen {

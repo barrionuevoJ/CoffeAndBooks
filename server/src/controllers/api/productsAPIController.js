@@ -6,14 +6,17 @@ const productsAPIController = {
             include: ['categoria', 'genero', 'autor']
         })
             .then(productos => {
-                let countByCategory = {};
+                let countByCategory = [];
                 productos.forEach(producto => {
                     const categoria = producto.categoria.categoria;
-                    if (!countByCategory[categoria]) {
-                        countByCategory[categoria] = 0;
+                    const existingCategory = countByCategory.find(item => item.categoria === categoria);
+                    if (existingCategory) {
+                        existingCategory.count++;
+                    } else {
+                        countByCategory.push({ categoria: categoria, count: 1 });
                     }
-                    countByCategory[categoria]++;
                 });
+
 
                 let respuesta = {
                     meta: {

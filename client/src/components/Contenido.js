@@ -8,8 +8,8 @@ import Footer from './Footer'
 function Contenido() {
     return(
         <React.Fragment>
-            <div className="contenido" id="content-wrapper">
-                <div id="content">
+            <div className="Contenido">
+                <div>
                     <BarraDeNavegacion />
                     <FilaSuperior />
                     <Producto />
