@@ -13,7 +13,7 @@ function BarraLateral() {
                     </div>
                 </a>
 
-                <a href="/"><span>Dashboard - DH movies</span></a>
+                <a href="/"><span>Dashboard</span></a>
 
                 <hr />
 

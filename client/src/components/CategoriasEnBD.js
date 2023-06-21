@@ -12,7 +12,6 @@ class CategoriasEnBD extends Component {
 
     getCategorias() {
         fetch(`http://localhost:${process.env.REACT_APP_PORT || 3005}/api/products`).then(response => response.json()).then(data => {
-            console.log(data.meta.countByCategory)
             this.setState({ categorias: data.meta.countByCategory })
         })
     }
