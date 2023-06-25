@@ -1,8 +1,10 @@
 import React from 'react'
 
 function Footer(){
-    <React.Fragment>
+    return (
+        <React.Fragment>
         
-    </React.Fragment>
+        </React.Fragment>
+    )
 }
 export default Footer
