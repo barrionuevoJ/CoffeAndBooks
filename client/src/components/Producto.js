@@ -14,8 +14,6 @@ const [products, setProduct] = useState([]);
        
 }, [])
 
-console.log(products.titulo);
-
 return (
 	<React.Fragment>
 	<h1>Listado de producto</h1>
