@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import '../assets/css/CategoriasEnBD.css'
 import Categoria from './Categoria';
+import UltimoProducto from './UltimoProducto'
 
 class CategoriasEnBD extends Component {
     constructor(props) {
@@ -23,6 +24,8 @@ class CategoriasEnBD extends Component {
     render() {
         return (
             <React.Fragment>
+                <UltimoProducto />
+
                 <div>
                     <div className='CategoriasEnBD'>
                         <div className='card-header'>

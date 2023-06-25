@@ -1,6 +1,8 @@
 import React from 'react'
+import '../assets/css/Conteo.css'
 import CategoriasEnBD from './CategoriasEnBD'
 import { useEffect, useState } from 'react'
+import Categoria from './Categoria';
 
 function FilaSuperior() {
     const [users, setUsers] = useState([]);
@@ -40,28 +42,28 @@ function FilaSuperior() {
                 <h1>Dashboard</h1>
 
                 <div>
-                    <h4>Total de Productos</h4>
-                    
-                    <p>
-                        {products.count}
-                    </p>
+                    <div className='conteo'>
+                        <div className='title'>
+                            <h4> Total de productos, usuarios y categorias.  </h4>
+                        </div>
+
+                        <div className='cardContainer'>
+                            <div className='countCard'>
+                                <p>Total de Productos - {products.count}</p>
+                            </div>
+
+                            <div className='countCard'>
+                                <p>Total de Categorias - {Categoria}</p>
+                            </div>
+
+                            <div className='countCard'>
+                                <p>Total de Usuarios - {users.count}</p>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
 
-                <div>
-                    <h4>Total de Categorias</h4>
-
-                    <p>
-                        { category }
-                    </p>
-                </div>
-
-                <div>
-                    <h4>Total de Usuarios</h4>
-
-                    <p>
-                        { users.count }
-                    </p>
-                </div>
                 <CategoriasEnBD />
             </div>
         </React.Fragment>
