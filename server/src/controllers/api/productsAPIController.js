@@ -53,8 +53,13 @@ const productsAPIController = {
                         url: `http://localhost:${process.env.PORT || 3005}/api/products/${producto.id_producto}`
                     },
                     data: {
-                        producto,
-                        img_URL: `http://localhost:${process.env.PORT || 3005}/Images/products/${producto.img}`
+                        producto: {
+                            ...producto.dataValues,
+                            categoria: producto.categoria.dataValues,
+                            genero: producto.genero.dataValues,
+                            autor: producto.autor.dataValues,
+                            img_URL: `http://localhost:${process.env.PORT || 3005}/Images/products/${producto.img}`
+                        },
                     }
                 }
                 res.json(respuesta);

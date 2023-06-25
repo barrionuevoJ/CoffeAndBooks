@@ -9,14 +9,14 @@ function BarraLateral() {
 
                 <a className="contenedor-imagen" href="/">
                     <div className="contenido-imagen">
-                        <img className="imagen" src={imagen} alt="Digital House"/>
+                        <img className="imagen" src={imagen} alt="Coffe and books"/>
                     </div>
                 </a>
 
                 <a href="/"><span>Dashboard</span></a>
 
                 <hr />
-
+          
                 <a href="http://localhost:3002">Pagina Principal</a>
             </div>
         </React.Fragment>

@@ -22,8 +22,6 @@ function FilaSuperior() {
         setLoading(false)
     }, [])
 
-    console.log(users);
-    console.log(products.countByCategory);
     let category;
 
     if (products.countByCategory) {
@@ -33,8 +31,6 @@ function FilaSuperior() {
     else {
         category = 0
     }
-
-    console.log();
 
     return (
         <React.Fragment>
