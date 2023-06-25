@@ -53,7 +53,7 @@ function FilaSuperior() {
                             </div>
 
                             <div className='countCard'>
-                                <p>Total de Categorias - {Categoria}</p>
+                                <p>Total de Categorias - { Categoria }</p>
                             </div>
 
                             <div className='countCard'>
