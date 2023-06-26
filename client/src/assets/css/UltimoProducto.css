@@ -1,18 +1,17 @@
 .lastProduct-body {
     position: relative;
     display: flex;
-    flex-direction: column;
-    min-width: 0;
-    word-wrap: break-word;
+    flex-direction: row;
+    justify-content: center;
     background-color: #fff;
     background-clip: border-box;
     border: 1px solid #e3e6f0;
     border-radius: 0.35rem;
     box-shadow: 0 .15rem 1.75rem 0 rgba(58,59,69,.15);
-    position: relative;
     width: 100%;
-    padding-right: 0.75rem;
-    padding-left: 0.75rem;
+    height: 100%;
+
+    padding: 20px 20px;
 }
 
 .description {

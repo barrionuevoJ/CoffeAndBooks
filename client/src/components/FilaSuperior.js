@@ -3,12 +3,10 @@ import '../assets/css/Conteo.css'
 import '../assets/css/FilaSuperior.css'
 import CategoriasEnBD from './CategoriasEnBD'
 import { useEffect, useState } from 'react'
-import Categoria from './Categoria';
 
 function FilaSuperior() {
     const [users, setUsers] = useState([]);
     const [products, setProducts] = useState([])
-    const [loading, setLoading] = useState(true)
 
     useEffect(() => {
         fetch(`http://localhost:${process.env.REACT_APP_PORT || 3005}/api/users`)
@@ -18,9 +16,6 @@ function FilaSuperior() {
         fetch(`http://localhost:${process.env.REACT_APP_PORT || 3005}/api/products`)
             .then(response => response.json())
             .then(data => setProducts(data.meta));
-
-
-        setLoading(false)
     }, [])
 
     let category;
@@ -52,7 +47,7 @@ function FilaSuperior() {
                             </div>
 
                             <div className='countCard'>
-                                <p>Total de Categorias - { Categoria }</p>
+                                <p>Total de Categorias - { category }</p>
                             </div>
 
                             <div className='countCard'>
