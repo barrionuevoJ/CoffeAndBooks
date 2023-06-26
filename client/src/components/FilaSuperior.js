@@ -1,5 +1,6 @@
 import React from 'react'
 import '../assets/css/Conteo.css'
+import '../assets/css/FilaSuperior.css'
 import CategoriasEnBD from './CategoriasEnBD'
 import { useEffect, useState } from 'react'
 import Categoria from './Categoria';
@@ -35,7 +36,9 @@ function FilaSuperior() {
     return (
         <React.Fragment>
             <div className="ContenidoFS">
-                <h1>Dashboard</h1>
+                <div className='FS-header'>
+                    <h1>Dashboard</h1>
+                </div>
 
                 <div>
                     <div className='conteo'>

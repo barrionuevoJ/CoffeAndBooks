@@ -1,38 +1,35 @@
 import React from 'react';
+import '../assets/css/Producto.css'
 
-import {useState, useEffect} from 'react';
+import { useState, useEffect } from 'react';
+import ListaProductos from './ListaProductos';
 
-function Producto () {
+function Producto() {
 
-const [products, setProduct] = useState([]);
+  const [products, setProduct] = useState([]);
 
-    useEffect(() => {
+  useEffect(() => {
     fetch(`http://localhost:3005/api/products`)
-        .then(response => response.json())
-        .then(data => setProduct(data.products));
+      .then(response => response.json())
+      .then(data => setProduct(data.products));
 
-       
-}, [])
 
-return (
-	<React.Fragment>
-	<h1>Listado de producto</h1>
+  }, [])
 
-    <div>
-        <label> Titulo </label>
-	<ul>
-        {products.map(product => (
-          <li key={product.id}>
-            <img src='product.img_URL'></img>
-            <p>{ `${product.titulo} - ${product.detail.autor}` }</p>
-          </li>
-        ))}
-      </ul>
-
+  return (
+    <React.Fragment>
+      <div className='Producto-header'>
+        <h1>Listado de producto</h1>
       </div>
-	</React.Fragment>
 
- )
+      <div className='Lista'>
+        {products.map((product, i) => (
+          <ListaProductos key={i} {...product} />
+        ))}
+      </div>
+    </React.Fragment>
+
+  )
 }
 
 export default Producto
