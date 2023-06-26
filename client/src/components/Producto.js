@@ -11,7 +11,7 @@ function Producto() {
   useEffect(() => {
     fetch(`http://localhost:3005/api/products`)
       .then(response => response.json())
-      .then(data => setProduct(data.products));
+      .then(data => setProduct(data.data));
 
 
   }, [])

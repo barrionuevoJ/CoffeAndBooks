@@ -1,21 +1,19 @@
 import React from 'react';
-import imagen from '../assets/images/default-image.png'
 import '../assets/css/UltimoProducto.css'
 import { useState, useEffect } from 'react';
 
 function UltimoProducto() {
 
     const [lastProduct, setLastProduct] = useState([]);
-    const [img, setImg] = useState([]);
 
     useEffect(() => {
         fetch(`http://localhost:3005/api/products`)
             .then(response => response.json())
-            .then(data => setLastProduct(data.products));
+            .then(data => setLastProduct(data.data));
     }, []);
 
-      
-      
+
+
     useEffect(() => {
         if (lastProduct.length > 0) {
             const lastProductIndex = lastProduct.length - 1;
@@ -23,7 +21,7 @@ function UltimoProducto() {
         }
     }, [lastProduct]);
 
-console.log(lastProduct);
+    const img = `http://localhost:3005/Images/products/${lastProduct.img}`
 
     return (
         <React.Fragment>
@@ -35,11 +33,11 @@ console.log(lastProduct);
 
                 <div className='lastProduct-body'> {/*Tbh, this DIV should be a section lol*/}
                     <div className='img'>
-                        <img src={imagen}></img>
+                        <img src={img} alt="lastProduct"></img>
                     </div>
 
                     <div className='description'>
-                        <h6> { lastProduct.titulo }</h6>
+                        <h6> {lastProduct.titulo}</h6>
                         <p> {lastProduct.descripcion} </p>
                     </div>
                 </div>
