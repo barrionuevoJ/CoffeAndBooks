@@ -1,6 +1,5 @@
 import React from 'react'
 import '../assets/css/Contenido.css'
-import BarraDeNavegacion from './BarraDenavegacion'
 import FilaSuperior from './FilaSuperior'
 import Producto from './Producto'
 import Footer from './Footer'
@@ -10,7 +9,6 @@ function Contenido() {
         <React.Fragment>
             <div className="Contenido">
                 <div>
-                    <BarraDeNavegacion />
                     <FilaSuperior />
                     <Producto />
                     <Footer />

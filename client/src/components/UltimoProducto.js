@@ -20,8 +20,6 @@ function UltimoProducto() {
         }
     }, [lastProduct]);
 
-    console.log(lastProduct);
-
     return (
         <React.Fragment>
 
